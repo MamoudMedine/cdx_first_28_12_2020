@@ -5,10 +5,12 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Action;
 use App\Models\Agence;
+use App\Models\Anomalie;
 use App\Models\Client;
 use App\Models\Credit;
 use App\Models\Deblocage;
 use App\Models\Echeance;
+use App\Models\Garantie;
 use App\Models\Impayee;
 use App\User;
 use Illuminate\Http\Request;
@@ -116,13 +118,13 @@ class AdminController extends Controller
         ));
     }
 
-    public function dossier()
+    public function dossier($code_agence = '00001')
     {
        $folders = Client::join('credits', 'clients.code_client', 'credits.code_client')
-                         ->where('clients.code_agence', '00001')->get();
+                         ->where('clients.code_agence', $code_agence)->orderBy('code_dossier', 'ASC')->get();
         //$folders = DB::table('clients')->get();
         $get_agence = Agence::orderBy('nom', 'ASC')->get();
-        return view('admin.dossier', compact( 'get_agence', 'folders'));
+        return view('admin.dossier', compact( 'get_agence', 'folders', 'code_agence'));
     }
 
     public function get_dossiers()
@@ -132,13 +134,68 @@ class AdminController extends Controller
                                 ->where('clients.code_agence', '00001')->get();
         return response()->json(['dossiers' => $folders]);
     }
-
+    // DETAIL DEBLOCAGE
     public function get_deblocages()
     {
         $code_dos = request('code_dos');
-        $deb = Deblocage::where('code_dossier', $code_dos)->orderBy('date_deblocage', 'DESC')->get();
+        $deb = Deblocage::where('code_dossier', $code_dos)->orderBy('date_deblocage', 'ASC')->get();
         if ($deb){
             return response()->json(['success'=>true, 'deblocage' => $deb]);
+        }else {
+            return response()->json(['success'=>false]);
+        }
+    }
+    // DETAIL ECHEANCES
+    public function get_echeances()
+    {
+        $code_dos = request('code_dos');
+        $ech = Echeance::where('code_dossier', $code_dos)->orderBy('date_echeance', 'ASC')->get();
+        if ($ech){
+            return response()->json(['success'=>true, 'echeances' => $ech]);
+        }else {
+            return response()->json(['success'=>false]);
+        }
+    }
+    // DETAIL GARANTIE
+    public function get_garanties()
+    {
+        $code_dos = request('code_dos');
+        $gar = Garantie::where('code_dossier', $code_dos)->get();
+        if ($gar){
+            return response()->json(['success'=>true, 'garanties' => $gar]);
+        }else {
+            return response()->json(['success'=>false]);
+        }
+    }
+     // DETAIL IMPAYEES
+    public function get_impayes()
+    {
+        $code_dos = request('code_dos');
+        $imp = Impayee::where('code_dossier', $code_dos)->get();
+        if ($imp){
+            return response()->json(['success'=>true, 'impayes' => $imp]);
+        }else {
+            return response()->json(['success'=>false]);
+        }
+    }
+    // DETAIL ACTIONS
+    public function get_actions()
+    {
+        $code_dos = request('code_dos');
+        $act = Action::where('code_dossier', $code_dos)->get();
+        if ($act){
+            return response()->json(['success'=>true, 'actions' => $act]);
+        }else {
+            return response()->json(['success'=>false]);
+        }
+    }
+    // DETAIL ANOMALIES
+    public function get_anomalies()
+    {
+        $code_dos = request('code_dos');
+        $an = Anomalie::where('code_dossier', $code_dos)->get();
+        if ($an){
+            return response()->json(['success'=>true, 'anomalies' => $an]);
         }else {
             return response()->json(['success'=>false]);
         }

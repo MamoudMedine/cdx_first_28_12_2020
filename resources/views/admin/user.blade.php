@@ -1,17 +1,14 @@
 <!doctype html>
-<html class="no-js" lang="en">
-
+<html lang="fr">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Codex | Administration</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- favicon
-		============================================ -->
+    <!-- favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
-    <!-- Google Fonts
-		============================================ -->
+    <!-- Google Fonts -->
         @include('layouts.header')
 </head>
 
@@ -37,14 +34,14 @@
                             </div>
                             <div class="col-lg-6 col-md-1 col-sm-1 col-xs-12"><!-- RECHERCHE-->
                                 <form style="margin-top: 15px;width: 800px;" action="" class="form form-inline">
-                                     <span style="font-weight: bold;font-size: 20px; color: white;">Agence : 
+                                     <span style="font-weight: bold;font-size: 20px; color: white;">Agence :
                                         <select style="width: 350px;color: black;font-size: 20px;padding: 5px; cursor: pointer;" class="form-control" name="" id="">
                                             @foreach ($get_agence as $item)
                                                 <option value="{{$item->nom}}" class="user_agence_pointer">{{$item->nom}}</option>
                                             @endforeach
                                         </select>
                                      </span>
-                                     <span style="font-weight: bold;font-size: 20px; color: white;"> 
+                                     <span style="font-weight: bold;font-size: 20px; color: white;">
                                         Mise à jour : 20-11-2020
                                      </span>
                                 </form>
@@ -65,7 +62,7 @@
                                                 <li>
                                                     <div class="p-2 border-t border-theme-40">
                                                         <a class="adminpro-icon adminpro-locked author-log-ic" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> <i data-feather="toggle-right" class="w-4 h-4 mr-2"></i> Déconnexion </a>
-                                                    
+
                                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                                             @csrf
                                                         </form>
@@ -92,36 +89,36 @@
                                         <li class="nav-item">
                                             <a href="#" role="button" aria-expanded="false"
                                              class="nav-link">
-                                                <i class="fa big-icon fa-tachometer"></i> 
-                                                <span class="mini-dn">Tableau de bord</span> 
+                                                <i class="fa big-icon fa-tachometer"></i>
+                                                <span class="mini-dn">Tableau de bord</span>
                                             </a>
                                         </li>
                                         <li class="nav-item">
                                             <a href="#" role="button" aria-expanded="false" class="nav-link">
-                                                <i class="fa big-icon fa-info-circle"></i> 
-                                                <span class="mini-dn">Information</span> 
+                                                <i class="fa big-icon fa-info-circle"></i>
+                                                <span class="mini-dn">Information</span>
                                             </a>
                                         </li>
                                         <li class="nav-item">
-                                            <a href="#" role="button" aria-expanded="false" class="nav-link"><i class="fa big-icon fa-folder"></i> <span class="mini-dn">Dossiers</span> 
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="#" role="button" aria-expanded="false" class="nav-link">
-                                                <i class="fa big-icon fa-exclamation-circle"></i> 
-                                                <span class="mini-dn">Anomalies</span> 
+                                            <a href="#" role="button" aria-expanded="false" class="nav-link"><i class="fa big-icon fa-folder"></i> <span class="mini-dn">Dossiers</span>
                                             </a>
                                         </li>
                                         <li class="nav-item">
                                             <a href="#" role="button" aria-expanded="false" class="nav-link">
-                                                <i class="fa big-icon fa-users"></i> 
-                                                <span class="mini-dn">Utilisateurs</span> 
+                                                <i class="fa big-icon fa-exclamation-circle"></i>
+                                                <span class="mini-dn">Anomalies</span>
                                             </a>
                                         </li>
                                         <li class="nav-item">
                                             <a href="#" role="button" aria-expanded="false" class="nav-link">
-                                                <i class="fa big-icon fa-database"></i> 
-                                                <span class="mini-dn">Agences</span> 
+                                                <i class="fa big-icon fa-users"></i>
+                                                <span class="mini-dn">Utilisateurs</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#" role="button" aria-expanded="false" class="nav-link">
+                                                <i class="fa big-icon fa-database"></i>
+                                                <span class="mini-dn">Agences</span>
                                             </a>
                                         </li>
                                     </ul>
@@ -188,11 +185,11 @@
                                                 <option value="selected">Export Selected</option>
                                             </select>
                                         </div>
-                                        <table id="table" class="user_table" data-toggle="table" data-pagination="true" 
-                                        data-search="true" data-show-columns="true" 
-                                        data-show-pagination-switch="true" data-show-refresh="true" 
-                                        data-key-events="true" data-show-toggle="true" data-resizable="true" 
-                                        data-cookie="true" data-cookie-id-table="saveId" data-show-export="true" 
+                                        <table id="table" class="user_table" data-toggle="table" data-pagination="true"
+                                        data-search="true" data-show-columns="true"
+                                        data-show-pagination-switch="true" data-show-refresh="true"
+                                        data-key-events="true" data-show-toggle="true" data-resizable="true"
+                                        data-cookie="true" data-cookie-id-table="saveId" data-show-export="true"
                                         data-click-to-select="true" data-toolbar="#toolbar">
                                             <thead>
                                                 <tr>
@@ -240,7 +237,7 @@
     </div>
     <!-- Footer End-->
     @include('layouts.footer')
-  
+
     <style>
         #sidebar_menu >li>a:hover{
           background-color: #202845;

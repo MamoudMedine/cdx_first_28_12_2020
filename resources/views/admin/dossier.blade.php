@@ -1,17 +1,14 @@
 <!doctype html>
-<html class="no-js" lang="en">
-
+<html  lang="fr">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Codex | Administration</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- favicon
-		============================================ -->
+    <!-- favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
-    <!-- Google Fonts
-		============================================ -->
+    <!-- Google Fonts -->
         @include('layouts.header')
 </head>
 
@@ -36,11 +33,15 @@
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-1 col-sm-1 col-xs-12"><!-- RECHERCHE-->
-                                <form style="margin-top: 15px;width: 800px;" action="" class="form form-inline">
+                                <form style="margin-top: 15px;width: 600px;" action="" class="form form-inline">
                                      <span style="font-weight: bold;font-size: 20px; color: white;">Agence :
-                                        <select style="width: 350px;color: black;font-size: 20px;padding: 5px;" class="form-control" name="" id="">
+                                        <select class="selectpicker text-info" data-live-search="true"
+                                                style="color: black;font-size: 15px;cursor: pointer;"
+                                                name="dos_nom_agence" id="dos_nom_agence">
                                             @foreach ($get_agence as $item)
-                                                <option value="{{$item->nom}}">{{$item->nom}}</option>
+                                                <option {{$code_agence==$item->code_agence?'selected':''}} style="cursor: pointer;"
+                                                        value="{{$item->code_agence}}">{{$item->nom}}
+                                                </option>
                                             @endforeach
                                         </select>
                                      </span>
@@ -162,7 +163,6 @@
                 </div>
             </div>
             <!-- Breadcome End-->
-            <!-- CONTENU Start -->
             <div class="data-table-area mg-b-15">
                 <div class="container-fluid" style="margin-top: 25px;">
                     <div class="row">
@@ -206,7 +206,7 @@
 
                                                 </div>
                                                 <div class="col-md-3 mg-b-10" style="align-content: flex-start;">
-                                                    <select class="form-control" name="" id="">
+                                                    <select class="selectpicker show-tick" name="" id="">
                                                         <option class="form-control" selected value="Aucun fitre">Aucun filtre</option>
                                                         <option class="form-control" value="active">Active</option>
                                                         <option class="form-control" value="close">Close</option>
@@ -265,7 +265,9 @@
 
                                                             <input type="hidden" id="get_deblocages_url" cod_dos="{{$item->code_dossier}}" value="{{route('get_deblocages')}}">
                                                             <td>
-                                                                <button data-toggle="modal" data-target="#dos_detail_mdl" class="btn btn-primary dos_detail_mdl">
+                                                                <button cod_dos="{{$item->code_dossier}}" data-toggle="modal" data-target="#dos_detail_mdl"
+                                                                        class="btn btn-primary dos_detail_mdl" data-backdrop="false"
+                                                                        data-keyboard="static">
                                                                     <i class="fa fa-eye"></i>
                                                                 </button>
                                                             </td>
@@ -279,12 +281,36 @@
                                                             <td>{{$item->sexe ?? ''}}</td>
                                                             <td>
                                                                 <div class="row align-center" style="margin-bottom: 1px;">
-                                                                    <button class="btn btn-danger"><i class="fa fa-comment-o"></i></button>&nbsp;
-                                                                    <button class="btn btn-danger"><i class="fa fa-phone"></i></button>
+                                                                    <button class="btn btn-danger dos_sms_mdl"
+                                                                             data-toggle="modal"
+                                                                             data-target="#dos_sms_mdl"
+                                                                             data-backdrop="false"
+                                                                             data-keyboard="static">
+                                                                        <i class="fa fa-comment-o"></i>
+                                                                    </button>&nbsp;
+                                                                    <button class="btn btn-danger dos_call_mdl"
+                                                                            data-toggle="modal"
+                                                                            data-target="#dos_call_mdl"
+                                                                            data-backdrop="false"
+                                                                            data-keyboard="static">
+                                                                        <i class="fa fa-phone"></i>
+                                                                    </button>
                                                                 </div>
                                                                 <div class="row align-center">
-                                                                    <button class="btn btn-danger"><i class="fa fa-home"></i></button>&nbsp;
-                                                                    <button class="btn btn-danger"><i class="fa fa-info"></i></button>
+                                                                    <button class="btn btn-danger dos_visit_mdl"
+                                                                            data-toggle="modal"
+                                                                            data-target="#dos_visit_mdl"
+                                                                            data-backdrop="false"
+                                                                            data-keyboard="static">
+                                                                        <i class="fa fa-home"></i>
+                                                                    </button>&nbsp;
+                                                                    <button class="btn btn-danger dos_anomalie_mdl"
+                                                                            data-toggle="modal"
+                                                                            data-target="#dos_anomalie_mdl"
+                                                                            data-backdrop="false"
+                                                                            data-keyboard="static">
+                                                                        <i class="fa fa-info"></i>
+                                                                    </button>
                                                                 </div>
                                                             </td>
                                                         </tr>

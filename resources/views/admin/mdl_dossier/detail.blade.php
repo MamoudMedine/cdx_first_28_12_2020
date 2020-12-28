@@ -2,6 +2,13 @@
     <div class="modal-dialog"  style="min-width: 1000px!important;">
         <!-- Modal content-->
         <div class="modal-content">
+            @csrf
+            <input type="hidden" class="adm_dos_det_cod_dos">
+            <input type="hidden" class="get_echeance_url" value="{{route('get_echeances')}}">
+            <input type="hidden" class="get_garantie_url" value="{{route('get_garanties')}}">
+            <input type="hidden" class="get_impaye_url" value="{{route('get_impayes')}}">
+            <input type="hidden" class="get_action_url" value="{{route('get_actions')}}">
+            <input type="hidden" class="get_anomalie_url" value="{{route('get_anomalies')}}">
 {{--            <div class="modal-header">--}}
 {{--                <button type="button" class="close" data-dismiss="modal">&times;</button>--}}
 {{--                <h4 class="modal-title">Modal Header</h4>--}}
@@ -45,11 +52,11 @@
                     <div class="col-md-12">
                         <ul class="nav nav-tabs">
                             <li class="active"><a data-toggle="tab" style="font-weight: bold;" href="#deblocage">Deblocage</a></li>
-                            <li><a data-toggle="tab" style="font-weight: bold;" href="#echeance">Echeance</a></li>
-                            <li><a data-toggle="tab" style="font-weight: bold;" href="#garantie">Garantie</a></li>
-                            <li><a data-toggle="tab" style="font-weight: bold;" href="#impayes">Impayes</a></li>
-                            <li><a data-toggle="tab" style="font-weight: bold;" href="#actions">Actions</a></li>
-                            <li><a data-toggle="tab" style="font-weight: bold;" href="#anomalies">Anomalies</a></li>
+                            <li><a data-toggle="tab" style="font-weight: bold;" class="adm_dos_ech_tab" href="#echeance">Echeance</a></li>
+                            <li><a data-toggle="tab" style="font-weight: bold;" class="adm_dos_gar_tab" href="#garantie">Garantie</a></li>
+                            <li><a data-toggle="tab" style="font-weight: bold;" class="adm_dos_imp_tab" href="#impayes">Impayes</a></li>
+                            <li><a data-toggle="tab" style="font-weight: bold;" class="adm_dos_act_tab" href="#actions">Actions</a></li>
+                            <li><a data-toggle="tab" style="font-weight: bold;" class="adm_dos_an_tab" href="#anomalies">Anomalies</a></li>
                         </ul>
 
                         <div class="tab-content">
@@ -68,31 +75,82 @@
                                 </div>
                             </div>
                             <div id="echeance" class="tab-pane fade">
-                                <h3>Menu 2</h3>
-                                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                                <div class="table-responsive">
+                                    <table id="adm_dos_det_tbl_echeance" class="table table-striped table-hover">
+                                        <thead>
+                                            <th>DATE DES ECHEANCES</th>
+                                            <th>CAPITAL RESTANT DU AVANT ECHEANCE</th>
+                                            <th>MONTANT AMORTISSEMENT</th>
+                                            <th>MONTANT DES INTERETS</th>
+                                            <th>MONTANT TOTAL DE L'ECHEANCE</th>
+                                            <th>NUMERO DE L'ECHEANCE</th>
+                                            <th>DATE DE REGLEMENT</th>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
                             </div>
                             <div id="garantie" class="tab-pane fade">
-                                <h3>Menu 3</h3>
-                                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+                                <div class="table-responsive">
+                                    <table id="adm_dos_det_tbl_garantie" class="table table-striped table-hover">
+                                        <thead>
+                                        <th>LIBELLE DE LA GARANTIE</th>
+                                        <th>MONTANT DE LA GARANTIE</th>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
                             </div>
                             <div id="impayes" class="tab-pane fade">
-                                <h3>Menu 4</h3>
-                                <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+                                <div class="table-responsive">
+                                    <table id="adm_dos_det_tbl_impaye" class="table table-striped table-hover">
+                                        <thead>
+                                        <th>DATE DE MISE EN IMPAYE</th>
+                                        <th>DATE DE L'ECHEANCE IMPAYEE</th>
+                                        <th>NUMERO DE L'ECHEANCE IMPAYEE</th>
+                                        <th>PHASE IMPAYE EN COURS</th>
+                                        <th>STATUT DE L'ECHEANCE</th>
+                                        <th>MONTANT GLOBAL RESTANT EN IMPAYE(Déduction des rembourssements)</th>
+                                        <th>MONTANT DES INTERETS JOURNALIERS DE RETARD</th>
+                                        <th>MONTANT TOTAL DES INTERETS DE RETARD PAYES</th>
+                                        <th>DATE DERNIER REMBOURSSEMENT</th>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
                             </div>
                             <div id="actions" class="tab-pane fade">
-                                <h3>Menu 5</h3>
-                                <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+                                <div class="table-responsive">
+                                    <table id="adm_dos_det_tbl_actions" class="table table-striped table-hover">
+                                        <thead>
+                                        <th>TYPE D'ACTION</th>
+                                        <th>DATE</th>
+                                        <th>COMMENTAIRE</th>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
                             </div>
                             <div id="anomalies" class="tab-pane fade">
-                                <h3>Menu 6</h3>
-                                <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+                                <div class="table-responsive">
+                                    <table id="adm_dos_det_tbl_anomalies" class="table table-striped table-hover">
+                                        <thead>
+                                        <th>ID</th>
+                                        <th>TYPE D'ANOMALIE</th>
+                                        <th>DATE</th>
+                                        <th>STATUT</th>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                <button type="button" style="font-weight: bold;color: white;" class="btn btn-danger"
+                        data-dismiss="modal">Fermer</button>
             </div>
         </div>
 

@@ -12,40 +12,40 @@
             <li class="nav-item">
                 <a href="{{route('dashboard_admin')}}" role="button" aria-expanded="false"
                  class="nav-link">
-                    <i class="fa big-icon fa-tachometer"></i> 
-                    <span class="mini-dn">Tableau de bord</span> 
+                    <i class="fa big-icon fa-tachometer"></i>
+                    <span class="mini-dn">Tableau de bord</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a href="{{route('information')}}" role="button" aria-expanded="false" class="nav-link">
-                    <i class="fa big-icon fa-info-circle"></i> 
-                    <span class="mini-dn">Information</span> 
+                    <i class="fa big-icon fa-info-circle"></i>
+                    <span class="mini-dn">Information</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{route('dossier')}}" role="button" aria-expanded="false" class="nav-link">
-                    <i class="fa big-icon fa-folder"></i> <span class="mini-dn">Dossiers</span> 
+                <a href="{{route('dossier', '00001')}}" role="button" aria-expanded="false" class="nav-link">
+                    <i class="fa big-icon fa-folder"></i> <span class="mini-dn">Dossiers</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a href="{{route('anomalie')}}" role="button" aria-expanded="false" class="nav-link">
-                    <i class="fa big-icon fa-exclamation-circle"></i> 
-                    <span class="mini-dn">Anomalies</span> 
+                    <i class="fa big-icon fa-exclamation-circle"></i>
+                    <span class="mini-dn">Anomalies</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a href="{{route('utilisateur')}}" role="button" aria-expanded="false" class="nav-link">
-                    <i class="fa big-icon fa-users"></i> 
-                    <span class="mini-dn">Utilisateurs</span> 
+                    <i class="fa big-icon fa-users"></i>
+                    <span class="mini-dn">Utilisateurs</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a href="{{route('agence')}}" role="button" aria-expanded="false" class="nav-link">
-                    <i class="fa big-icon fa-database"></i> 
-                    <span class="mini-dn">Agences</span> 
+                    <i class="fa big-icon fa-database"></i>
+                    <span class="mini-dn">Agences</span>
                 </a>
             </li>
-            
+
         </ul>
     </div>
 </nav>

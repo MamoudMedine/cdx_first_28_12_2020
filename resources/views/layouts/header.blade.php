@@ -5,6 +5,8 @@
 		============================================ -->
     <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}">
     <!-- Bootstrap CSS
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
 		============================================ -->
     <link rel="stylesheet" href="{{asset('css/font-awesome.min.css')}}">
     <!-- adminpro icon CSS

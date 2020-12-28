@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth'], function () {
     Route::get('/', 'AdminController@index')->name('dashboard_admin');
     Route::get('/information', 'AdminController@information')->name('information');
-    Route::get('/dossier', 'AdminController@dossier')->name('dossier');
+    Route::get('/dossier/{code_agence}', 'AdminController@dossier')->name('dossier');
     Route::get('/anomalie', 'AdminController@anomalie')->name('anomalie');
     Route::get('/utilisateur', 'AdminController@utilisateur')->name('utilisateur');
     Route::get('/agence', 'AdminController@agence')->name('agence');
@@ -31,7 +31,13 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth
     Route::get('/edit', 'AdminController@editAccount')->name('edit_user_admin');
     Route::put('/update/{id}', 'AdminController@updateAccount')->name('update_user_admin');
     Route::get('/get_dossiers', 'AdminController@get_dossiers')->name('get_dossiers_url');
+    // DOSSIER DETAILS
     Route::post('/get_deblocages', 'AdminController@get_deblocages')->name('get_deblocages');
+    Route::post('/get_echeances', 'AdminController@get_echeances')->name('get_echeances');
+    Route::post('/get_garanties', 'AdminController@get_garanties')->name('get_garanties');
+    Route::post('/get_impayes', 'AdminController@get_impayes')->name('get_impayes');
+    Route::post('/get_actions', 'AdminController@get_actions')->name('get_actions');
+    Route::post('/get_anomalies', 'AdminController@get_anomalies')->name('get_anomalies');
 });
 
 
