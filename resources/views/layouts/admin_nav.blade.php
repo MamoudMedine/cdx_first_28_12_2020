@@ -28,7 +28,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="{{route('anomalie')}}" role="button" aria-expanded="false" class="nav-link">
+                <a href="{{route('anomalie', '00001')}}" role="button" aria-expanded="false" class="nav-link">
                     <i class="fa big-icon fa-exclamation-circle"></i>
                     <span class="mini-dn">Anomalies</span>
                 </a>

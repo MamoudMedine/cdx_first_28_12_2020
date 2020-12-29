@@ -7,6 +7,13 @@ $(function() {
         responsive:true,
         ordering:false
     });
+    $("#table_adm_anom").DataTable({
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/1.10.21/i18n/French.json"
+        },
+        responsive:true,
+        ordering:false
+    });
     $(document).on('click', '.user_agence_pointer', function() {
         location.reload(true);
     });

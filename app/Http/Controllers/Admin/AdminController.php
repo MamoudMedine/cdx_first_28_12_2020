@@ -15,6 +15,7 @@ use App\Models\Impayee;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
@@ -117,14 +118,24 @@ class AdminController extends Controller
             'get_agence', 'dossier_global', 'sms_global', 'call_global', 'visit_global', 'dossier_agence', 'call_agence', 'sms_agence', 'visit_agence', 'get_all_user'
         ));
     }
-
+    // DOSSIERS
     public function dossier($code_agence = '00001')
     {
-       $folders = Client::join('credits', 'clients.code_client', 'credits.code_client')
-                         ->where('clients.code_agence', $code_agence)->orderBy('code_dossier', 'ASC')->get();
-        //$folders = DB::table('clients')->get();
+//       $folders = Client::join('credits', 'clients.code_client', 'credits.code_client')
+//                         ->where('clients.code_agence', $code_agence)->orderBy('code_dossier', 'ASC')->get();
+//        $get_agence = Agence::orderBy('nom', 'ASC')->get();
+//        return view('admin.dossier', compact( 'get_agence', 'folders', 'code_agence'));
         $get_agence = Agence::orderBy('nom', 'ASC')->get();
-        return view('admin.dossier', compact( 'get_agence', 'folders', 'code_agence'));
+        if(Cache::has('get_dossiers')){
+            $folders = Cache::get('get_dossiers');
+            return view('admin.dossier', compact( 'get_agence', 'folders', 'code_agence'));
+        }else{
+            $folders = Cache::rememberForever('get_dossiers',  function () use($code_agence){
+                return Client::join('credits', 'clients.code_client', 'credits.code_client')
+                    ->where('clients.code_agence', $code_agence)->orderBy('code_dossier', 'ASC')->get();
+            });
+            return view('admin.dossier', compact( 'get_agence', 'folders', 'code_agence'));
+        }
     }
 
     public function get_dossiers()
@@ -200,30 +211,15 @@ class AdminController extends Controller
             return response()->json(['success'=>false]);
         }
     }
+    //ANOMALIES
+    public function anomalie($code_agence)
+    {     //dd(Cache::get('get_anomalies'));
+           $get_agence = Agence::orderBy('nom', 'ASC')->get();
 
-    public function anomalie()
-    {
-        $anomalies = Client::join('anomalies', 'clients.code_client', 'anomalies.code_client')
-                   ->where('clients.code_agence', '00001')->get();
-        //$anomalie = Client::join('agences', 'clients.code_agence', 'agences.code_agence')
-                    //->join('credits', 'clients.code_client', 'credits.code_client')
-                    //->join('echeances', 'credits.code_dossier', 'echeances.code_dossier')
-                    //->join('impayes', 'credits.code_dossier', 'impayes.code_dossier')
-                    //->join('anomalies', 'credits.code_dossier', 'anomalies.code_dossier')
-                    //->get();
+            $anomalies =Client::join('credits', 'clients.code_client', 'credits.code_client')
+                         ->where('clients.code_agence', $code_agence)->get();
+            return view('admin.anomalie', compact('anomalies', 'get_agence', 'code_agence'));
 
-        // $files = Client::join('actions', 'clients.code_client', 'actions.code_client')
-        //                 ->join('agences', 'clients.code_agence', 'agences.code_agence')
-        //                 ->join('credits', 'clients.code_client', 'credits.code_client')
-        //                 ->join('credits', 'agences.code_agence', 'credits.code_agence')
-        //                 ->join('garanties', 'clients.code_client', 'garanties.code_client')
-        //                 ->join('deblocages', 'echeances.code_echeance', 'deblocages.code_echeance')
-        //                 ->join('anomalies', 'clients.code_client', 'anomalies.code_client')
-        //                 ->join('impayes', 'agences.code_agence', 'impayes.code_agence');
-
-        $get_agence = Agence::orderBy('nom', 'ASC')->get();
-
-        return view('admin.anomalie', compact('anomalies', 'get_agence'));
     }
 
     public function utilisateur()

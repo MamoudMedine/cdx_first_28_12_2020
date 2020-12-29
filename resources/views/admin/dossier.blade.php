@@ -15,7 +15,7 @@
 <body class="materialdesign">
     <div class="wrapper-pro">
         <div class="left-sidebar-pro" >
-            @include('layouts.admin_nav')
+            @include('layouts.admin_nav')// ADMIN SIDEBAR
         </div>
         <!-- Header top area start-->
         <div class="content-inner-all">
@@ -285,14 +285,20 @@
                                                                              data-toggle="modal"
                                                                              data-target="#dos_sms_mdl"
                                                                              data-backdrop="false"
-                                                                             data-keyboard="static">
+                                                                             data-keyboard="static"
+                                                                    data-tooltip="tooltip"
+                                                                        data-original-title="SMS"
+                                                                        data-placement="top">
                                                                         <i class="fa fa-comment-o"></i>
                                                                     </button>&nbsp;
                                                                     <button class="btn btn-danger dos_call_mdl"
                                                                             data-toggle="modal"
                                                                             data-target="#dos_call_mdl"
                                                                             data-backdrop="false"
-                                                                            data-keyboard="static">
+                                                                            data-keyboard="static"
+                                                                         data-tooltip="tooltip"
+                                                                        data-original-title="SMS"
+                                                                        data-placement="top">
                                                                         <i class="fa fa-phone"></i>
                                                                     </button>
                                                                 </div>
@@ -301,14 +307,20 @@
                                                                             data-toggle="modal"
                                                                             data-target="#dos_visit_mdl"
                                                                             data-backdrop="false"
-                                                                            data-keyboard="static">
+                                                                            data-keyboard="static"
+                                                                        data-tooltip="tooltip"
+                                                                        data-original-title="SMS"
+                                                                        data-placement="top">
                                                                         <i class="fa fa-home"></i>
                                                                     </button>&nbsp;
                                                                     <button class="btn btn-danger dos_anomalie_mdl"
                                                                             data-toggle="modal"
                                                                             data-target="#dos_anomalie_mdl"
                                                                             data-backdrop="false"
-                                                                            data-keyboard="static">
+                                                                            data-keyboard="static"
+                                                                        data-tooltip="tooltip"
+                                                                        data-original-title="SMS"
+                                                                        data-placement="top">
                                                                         <i class="fa fa-info"></i>
                                                                     </button>
                                                                 </div>

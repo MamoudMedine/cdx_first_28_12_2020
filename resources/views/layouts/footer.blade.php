@@ -1,7 +1,7 @@
     <!-- jquery
 		============================================ -->
     <script src="{{asset('js/vendor/jquery-1.11.3.min.js')}}"></script>
-
+    <script src="{{asset('asset/popper/popper.min.js')}}"></script>
     <!-- bootstrap JS
 		============================================ -->
     <script src="{{asset('js/bootstrap.min.js')}}"></script>

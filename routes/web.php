@@ -19,7 +19,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth
     Route::get('/', 'AdminController@index')->name('dashboard_admin');
     Route::get('/information', 'AdminController@information')->name('information');
     Route::get('/dossier/{code_agence}', 'AdminController@dossier')->name('dossier');
-    Route::get('/anomalie', 'AdminController@anomalie')->name('anomalie');
+    Route::get('/anomalie/{code_agence}', 'AdminController@anomalie')->name('anomalie');
     Route::get('/utilisateur', 'AdminController@utilisateur')->name('utilisateur');
     Route::get('/agence', 'AdminController@agence')->name('agence');
     Route::get('/edit/{id}', 'AdminController@edit')->name('edit_user');
