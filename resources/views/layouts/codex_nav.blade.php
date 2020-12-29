@@ -12,19 +12,19 @@
             <li class="nav-item">
                 <a href="{{route('dashboard_codex')}}" role="button" aria-expanded="false"
                  class="nav-link">
-                    <i class="fa big-icon fa-tachometer"></i> 
-                    <span class="mini-dn">Tableau de bord</span> 
+                    <i class="fa big-icon fa-tachometer"></i>
+                    <span class="mini-dn">Tableau de bord</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a href="{{route('information_codex')}}" role="button" aria-expanded="false" class="nav-link">
-                    <i class="fa big-icon fa-info-circle"></i> 
-                    <span class="mini-dn">Information</span> 
+                    <i class="fa big-icon fa-info-circle"></i>
+                    <span class="mini-dn">Information</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a href="{{route('dossier_codex')}}" role="button" aria-expanded="false" class="nav-link">
-                    <i class="fa big-icon fa-folder"></i> <span class="mini-dn">Dossiers</span> 
+                    <i class="fa big-icon fa-folder"></i> <span class="mini-dn">Dossiers</span>
                 </a>
             </li>
         </ul>

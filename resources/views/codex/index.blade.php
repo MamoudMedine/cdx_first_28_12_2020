@@ -1,6 +1,5 @@
 <!doctype html>
-<html class="no-js" lang="en">
-
+<html lang="fr">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -13,7 +12,56 @@
     <!-- Google Fonts
 		============================================ -->
     @include('layouts.header')
-    
+    <script type="text/javascript">
+        function charts(chart,labs, type, data, bg_color){
+            new Chart(chart, {
+                type: type,
+                data: {
+                    labels: labs,
+                    datasets: [{
+                        data: data,
+                        backgroundColor: bg_color,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    plugins: {
+                        labels: {
+                            render: 'percentage',
+                            fontColor: ['white', 'white'],
+                            precision: 2
+                        }
+                    },
+                }
+            });
+        }
+        window.onload = function() {
+            var pie_chart2 = document.getElementById('pieChart2');
+            var data2 = [40655, 50445];
+            var labels2 = ['Total en cours','Total recouvré'];
+            var bg_color2 = ['#FF6384','#36A2EB'];
+            charts(pie_chart2,labels2, 'pie', data2, bg_color2);
+
+            var pie_chart4 = document.getElementById('pieChart4');
+            var data4 = [33655,15000, 40445];
+            var labels4 = ['Total en cours','autres','Total recouvré'];
+            var bg_color4 = ['#FF6384', '#4F5244','#36A2EB'];
+            charts(pie_chart4,labels4, 'pie', data4, bg_color4);
+
+            var bar_chart = document.getElementById('barChart');
+            var bar_data = [40655, 49445];
+            var bar_labels = ['Total en cours','Total recouvré'];
+            var bar_bg_color = ['#FF6384', '#4F5244'];
+            charts(bar_chart,bar_labels, 'bar', bar_data, bar_bg_color);
+
+            var bar_chart1 = document.getElementById('barChart1');
+            var bar_data1 = [40655, 48445];
+            var bar_labels1 = ['Total en cours','Total recouvré'];
+            var bar_bg_color1 = ['#FF6384', '#4F5244'];
+            charts(bar_chart1,bar_labels1, 'bar', bar_data1, bar_bg_color1);
+        }
+    </script>
 </head>
 
 <body class="materialdesign">
@@ -38,8 +86,10 @@
                             </div>
                             <div class="col-lg-6 col-md-1 col-sm-1 col-xs-12"><!-- RECHERCHE-->
                                 <form style="margin-top: 15px;width: 800px;" action="" class="form form-inline">
-                                     <span style="font-weight: bold;font-size: 20px; color: white;">Agence : {{$get_agence->nom}}</span>
-                                     <span style="font-weight: bold;font-size: 20px; color: white;"> 
+                                     <span style="font-weight: bold;font-size: 20px;
+                                     color: white;">Agence : <b style="color: red;">{{$get_agence->nom}}</b>
+                                     </span>&nbsp;
+                                     <span style="font-weight: bold;font-size: 20px; color: white;">
                                         Mise à jour : 20-11-2020
                                      </span>
                                 </form>
@@ -60,7 +110,7 @@
                                                 <li>
                                                     <div class="p-2 border-t border-theme-40">
                                                         <a class="adminpro-icon adminpro-locked author-log-ic" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> <i data-feather="toggle-right" class="w-4 h-4 mr-2"></i> Déconnexion </a>
-                                                    
+
                                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                                             @csrf
                                                         </form>
@@ -87,36 +137,36 @@
                                         <li class="nav-item">
                                             <a href="#" role="button" aria-expanded="false"
                                              class="nav-link">
-                                                <i class="fa big-icon fa-tachometer"></i> 
-                                                <span class="mini-dn">Tableau de bord</span> 
+                                                <i class="fa big-icon fa-tachometer"></i>
+                                                <span class="mini-dn">Tableau de bord</span>
                                             </a>
                                         </li>
                                         <li class="nav-item">
                                             <a href="#" role="button" aria-expanded="false" class="nav-link">
-                                                <i class="fa big-icon fa-info-circle"></i> 
-                                                <span class="mini-dn">Information</span> 
+                                                <i class="fa big-icon fa-info-circle"></i>
+                                                <span class="mini-dn">Information</span>
                                             </a>
                                         </li>
                                         <li class="nav-item">
-                                            <a href="#" role="button" aria-expanded="false" class="nav-link"><i class="fa big-icon fa-folder"></i> <span class="mini-dn">Dossiers</span> 
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="#" role="button" aria-expanded="false" class="nav-link">
-                                                <i class="fa big-icon fa-exclamation-circle"></i> 
-                                                <span class="mini-dn">Anomalies</span> 
+                                            <a href="#" role="button" aria-expanded="false" class="nav-link"><i class="fa big-icon fa-folder"></i> <span class="mini-dn">Dossiers</span>
                                             </a>
                                         </li>
                                         <li class="nav-item">
                                             <a href="#" role="button" aria-expanded="false" class="nav-link">
-                                                <i class="fa big-icon fa-users"></i> 
-                                                <span class="mini-dn">Utilisateurs</span> 
+                                                <i class="fa big-icon fa-exclamation-circle"></i>
+                                                <span class="mini-dn">Anomalies</span>
                                             </a>
                                         </li>
                                         <li class="nav-item">
                                             <a href="#" role="button" aria-expanded="false" class="nav-link">
-                                                <i class="fa big-icon fa-database"></i> 
-                                                <span class="mini-dn">Agences</span> 
+                                                <i class="fa big-icon fa-users"></i>
+                                                <span class="mini-dn">Utilisateurs</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#" role="button" aria-expanded="false" class="nav-link">
+                                                <i class="fa big-icon fa-database"></i>
+                                                <span class="mini-dn">Agences</span>
                                             </a>
                                         </li>
                                     </ul>
@@ -132,101 +182,52 @@
                 <div class="container-fluid">
                     <div class="row" style="margin-top: 15px;">
                         <!-- CONTENU PRINCIPAL -->
-                            <div class="container">
-                                    <div class="row">
-                                        @if($message = Session::get('success'))
-                                            {{-- <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a> --}}
-                                            <div class="alert alert-success">{{ $message }}</div>
-                                        @endif
-                                        <div class="col-md-1"></div>
-                                        <div class="col-md-5">
-                                            <h2>Informations globales</h2>
-                                            <div class="panel panel-default">
-                                                <div style="background-color: white;" class="panel-heading">Informations globales</div>
-                                                <div class="panel-body">
-                                                    graph global
-                                                </div>
-                                            </div>
+                        <div class="container">
+                            <div class="row"> <!-- Recouvrement -->
+                                <div class="col-md-5">
+                                    <div class="panel panel-default">
+                                        <div style="background-color: white;" class="panel-heading">Total du Recouvrement Agence</div>
+                                        <div class="panel-body">
+                                            <canvas id="pieChart2" width="400" height="300"></canvas>
                                         </div>
-                                        <div class="col-md-5 mx-auto">
-                                            <h2>Informations par agences</h2>
-                                            <div class="panel panel-default">
-                                                <div style="background-color: white;" class="panel-heading">Informations par agences</div>
-                                                <div class="panel-body">
-                                                    graph global
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-1"></div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-md-1"></div>
-                                        <div class="col-md-5">
-                                            <h2>Informations globales</h2>
-                                            <div class="panel panel-default">
-                                                <div style="background-color: white;" class="panel-heading">Informations globales</div>
-                                                <div class="panel-body">
-                                                    graph global
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-5 mx-auto">
-                                            <h2>Informations par agences</h2>
-                                            <div class="panel panel-default">
-                                                <div style="background-color: white;" class="panel-heading">Informations par agences</div>
-                                                <div class="panel-body">
-                                                    graph global
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-1"></div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-1"></div>
-                                        <div class="col-md-5">
-                                            <h2>Informations globales</h2>
-                                            <div class="panel panel-default">
-                                                <div style="background-color: white;" class="panel-heading">Informations globales</div>
-                                                <div class="panel-body">
-                                                    graph global
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-5 mx-auto">
-                                            <h2>Informations par agences</h2>
-                                            <div class="panel panel-default">
-                                                <div style="background-color: white;" class="panel-heading">Informations par agences</div>
-                                                <div class="panel-body">
-                                                    graph global
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-1"></div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-1"></div>
-                                        <div class="col-md-5">
-                                            <h2>Informations globales</h2>
-                                            <div class="panel panel-default">
-                                                <div style="background-color: white;" class="panel-heading">Informations globales</div>
-                                                <div class="panel-body">
-                                                    graph global
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-5 mx-auto">
-                                            <h2>Informations par agences</h2>
-                                            <div class="panel panel-default">
-                                                <div style="background-color: white;" class="panel-heading">Informations par agences</div>
-                                                <div class="panel-body">
-                                                    graph global
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-1"></div>
-                                    </div>
+                                </div>
                             </div>
-                            <!-- FIN CONTENU PRINCIPAL -->
+                            <div class="row"><!-- Dossiers en retard -->
+                                <div class="col-md-5">
+                                    <div class="panel panel-default">
+                                        <div style="background-color: white;" class="panel-heading">
+                                            Total de dossiers en retard par agence</div>
+                                        <div class="panel-body">
+                                            <canvas id="pieChart4" width="400" height="300"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row"><!-- Actions globale -->
+                                <div class="col-md-5">
+                                    <div class="panel panel-default">
+                                        <div style="background-color: white;" class="panel-heading">Actions par agences</div>
+                                        <div class="panel-body">
+                                            <canvas id="barChart" width="400" height="300"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row"><!-- Total impayé recouvrer-->
+                                <div class="col-md-5">
+                                    <div class="panel panel-default">
+                                        <div style="background-color: white;" class="panel-heading">
+                                            Total Impayé - Recouvré par agence
+                                        </div>
+                                        <div class="panel-body">
+                                            <canvas id="barChart1" width="400" height="300"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- FIN CONTENU PRINCIPAL -->
                     </div>
                 </div>
             </div>
@@ -247,6 +248,8 @@
     </div>
     <!-- Footer End-->
     @include('layouts.footer')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/emn178/chartjs-plugin-labels/src/chartjs-plugin-labels.js"></script>
     <style>
         #sidebar_menu >li>a:hover{
           background-color: #202845;

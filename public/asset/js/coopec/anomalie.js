@@ -273,38 +273,50 @@ $(function (){
        return tr;
      }// GENNERE TABLE DOSSIERS
     // ANOMALIE FILTRE
-    $(document).on('change', '#chekbox_dos_impaye', function (){
-        if($(this).is(':checked')) {
-            $('.btn_filtre_par_dos_impaye').show();
-            $('.btn_filtre_par_banque').hide();
-            $('.btn_filtre_par_anomalie_active').hide();
-            $('.btn_filtre_par_anomalie_close').hide();
-            $('.btn_filtre_default').hide();
-        }
-    });
-    $(document).on('change', '#chekbox_dos_par_banque', function (){
-         if($(this).is(':checked')){
-             $('.btn_filtre_par_dos_impaye').hide();
-             $('.btn_filtre_par_banque').show();
-             $('.btn_filtre_par_anomalie_active').hide();
-             $('.btn_filtre_par_anomalie_close').hide();
-             $('.btn_filtre_default').hide();
-         }
-    });
-    $(document).on('change', '#select_type_credit', function (){
-        if($(this).val() === 'active') {
-            $('.btn_filtre_par_dos_impaye').hide();
-            $('.btn_filtre_par_banque').hide();
-            $('.btn_filtre_par_anomalie_active').show();
-            $('.btn_filtre_par_anomalie_close').hide();
-            $('.btn_filtre_default').hide();
-        }
-        if($(this).val() === 'close') {
-            $('.btn_filtre_par_dos_impaye').hide();
-            $('.btn_filtre_par_banque').hide();
-            $('.btn_filtre_par_anomalie_active').hide();
-            $('.btn_filtre_par_anomalie_close').show();
-            $('.btn_filtre_default').hide();
+    $(document).on('click', '.btn_filtre_par_type', function (e){
+         e.preventDefault();
+         var code_agence = $("#anomalie_code_agence").val();
+         var url = $(this).attr('data-url');
+         var token = $(input[name="_token"]).val();
+        if($("#chekbox_dos_impaye").is(':checked')){
+            console.log('impaye');
+              // $.ajax({
+              //     url: url,
+              //     type: 'POST',
+              //     data: {_token: token, code_agence:code_agence, filtre_type: 'dos_en_impaye'},
+              //     success: function (resp) {
+              //
+              //     },
+              //     error: function () {
+              //         alert('Erreur survenue');
+              //     }
+              // });
+        } else if($("#chekbox_dos_par_banque").is(':checked')) {
+            console.log('banque');
+            // $.ajax({
+            //     url: url,
+            //     type: 'POST',
+            //     data: {_token: token, code_agence:code_agence, filtre_type: 'dos_par_banque'},
+            //     success: function (resp) {
+            //
+            //     },
+            //     error: function () {
+            //         alert('Erreur survenue');
+            //     }
+            // });
+        } else if($("#select_type_credit").is(':selected')){
+            console.log('active ou close');
+            // $.ajax({
+            //     url: url,
+            //     type: 'POST',
+            //     data: {_token: token, code_agence:code_agence, filtre_type: 'dos_en_impaye'},
+            //     success: function (resp) {
+            //
+            //     },
+            //     error: function () {
+            //         alert('Erreur survenue');
+            //     }
+            // });
         }
     });
 });

@@ -31,6 +31,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth
     Route::get('/edit', 'AdminController@editAccount')->name('edit_user_admin');
     Route::put('/update/{id}', 'AdminController@updateAccount')->name('update_user_admin');
     Route::get('/get_dossiers', 'AdminController@get_dossiers')->name('get_dossiers_url');
+    Route::get('/dossiers_par_filtre/{dossiers}/{agence}', 'AdminController@dossiers_par_filtre')->name('dossiers_par_filtre');
+    Route::get('/anomalies_par_filtre/{filtre_type}/{code_agence}', 'AdminController@anomalies_par_filtre')->name('anomalies_par_filtre');
     // DOSSIER DETAILS
     Route::post('/get_deblocages', 'AdminController@get_deblocages')->name('get_deblocages');
     Route::post('/get_echeances', 'AdminController@get_echeances')->name('get_echeances');
@@ -38,6 +40,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth
     Route::post('/get_impayes', 'AdminController@get_impayes')->name('get_impayes');
     Route::post('/get_actions', 'AdminController@get_actions')->name('get_actions');
     Route::post('/get_anomalies', 'AdminController@get_anomalies')->name('get_anomalies');
+    // ANOMALIES
+    Route::post('/filtre_anomalie', 'AdminController@filtre_anomalies')->name('adm_filtre_anomalies');
 });
 
 
@@ -59,6 +63,16 @@ Route::group(['prefix' => 'codex', 'namespace' => 'Codex', 'middleware' => 'auth
     Route::get('/dossier', 'CodexController@dossier')->name('dossier_codex');
     Route::get('/edit', 'CodexController@edit')->name('edit_user_codex');
     Route::put('/update/{id}', 'CodexController@update')->name('update_user_codex');
+    Route::get('/get_dossiers', 'CodexController@get_dossiers')->name('get_dossiers_url');
+    // DOSSIER DETAILS
+    Route::post('/get_deblocages', 'CodexController@get_deblocages')->name('get_deblocages');
+    Route::post('/get_echeances', 'CodexController@get_echeances')->name('get_echeances');
+    Route::post('/get_garanties', 'CodexController@get_garanties')->name('get_garanties');
+    Route::post('/get_impayes', 'CodexController@get_impayes')->name('get_impayes');
+    Route::post('/get_actions', 'CodexController@get_actions')->name('get_actions');
+    Route::post('/get_anomalies', 'CodexController@get_anomalies')->name('get_anomalies');
+    // ANOMALIES
+    Route::post('/filtre_anomalie', 'CodexController@filtre_anomalies')->name('codex_filtre_anomalies');
 });
 
 

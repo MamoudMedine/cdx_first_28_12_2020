@@ -221,6 +221,73 @@ class AdminController extends Controller
             return view('admin.anomalie', compact('anomalies', 'get_agence', 'code_agence'));
 
     }
+    // VIEW ANOMALIE PAR FILTRE
+    public function anomalies_par_filtre($filtre_type, $code_agence)
+    {
+        $get_agence = Agence::orderBy('nom', 'ASC')->get();
+        if($filtre_type == 'dos_en_impaye'){
+            $anomalies = Client::join('credits', 'clients.code_client', 'credits.code_client')
+                ->join('impayes', 'impayes.code_dossier', 'credits.code_dossier')
+                ->where('impayes.statut_echeance', 'A')
+                ->where('clients.code_agence', $code_agence)
+                ->get();
+            /*$route = route('anomalies_par_filtre', compact('anomalies',
+                                                       'get_agence', 'code_agence'));*/
+            return view('admin.anomalie', compact('anomalies', 'code_agence', 'get_agence'));
+        }
+        if($filtre_type == 'dos_par_banque'){
+            $anomalies = Client::join('credits', 'clients.code_client', 'credits.code_client')
+                                ->get();
+            /*$route = route('anomalies_par_filtre', compact('anomalies',
+                                                       'get_agence', 'code_agence'));*/
+            return view('admin.anomalie', compact('anomalies', 'code_agence', 'get_agence'));
+        }
+        if($filtre_type == 'par_anomalie_active'){
+            $anomalies = Client::join('credits', 'clients.code_client', 'credits.code_client')
+                ->join('anomalies', 'anomalies.code_dossier', 'anomalies.code_dossier')
+                ->where('anomalies.statut', 'STATUS_CLOSE')
+                ->where('clients.code_agence', $code_agence)
+                ->get();
+            /*$route = route('anomalies_par_filtre', compact('anomalies',
+                                                       'get_agence', 'code_agence'));*/
+            return view('admin.anomalie', compact('anomalies', 'code_agence', 'get_agence'));
+        }
+        if($filtre_type == 'par_anomalie_close'){
+            $anomalies = Client::join('credits', 'clients.code_client', 'credits.code_client')
+                ->join('anomalies', 'anomalies.code_dossier', 'anomalies.code_dossier')
+                ->where('anomalies.statut', 'STATUS_ACTIVE')
+                ->where('clients.code_agence', $code_agence)
+                ->get();
+            /*$route = route('anomalies_par_filtre', compact('anomalies',
+                                                       'get_agence', 'code_agence'));*/
+            return view('admin.anomalie', compact('anomalies', 'code_agence', 'get_agence'));
+        }
+    }
+    // FILTRE ANOMALIES
+    public function filtre_anomalies()
+    {
+        $code_agence = request('code_agence');
+        $filtre_type = request('filtre_type');
+
+        if($filtre_type == 'dos_en_impaye'){
+            $get_agence = Agence::orderBy('nom', 'ASC')->get();
+            $anomalies = Client::join('credits', 'clients.code_client', 'credits.code_client')
+                               ->join('impayes', 'impayes.code_dossier', 'credits.code_dossier')
+                               ->where('impayes.statut_echeance', 'A')
+                               ->where('clients.code_agence', $code_agence)
+                               ->get();
+            /*$route = route('anomalies_par_filtre', compact('anomalies',
+                                                       'get_agence', 'code_agence'));*/
+
+            return response()->json(['anomalies' => $anomalies, 'get_agence'=>$get_agence, 'code_agence'=>$code_agence]);
+        }
+        if($filtre_type == 'dos_par_banque'){
+           $get_agence = Agence::orderBy('nom', 'ASC')->get();
+        }
+        if($filtre_type == 'par_anomalie'){
+           $get_agence = Agence::orderBy('nom', 'ASC')->get();
+        }
+    }
 
     public function utilisateur()
     {

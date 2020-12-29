@@ -321,7 +321,7 @@
                                                                         data-tooltip="tooltip"
                                                                         data-original-title="SMS"
                                                                         data-placement="top">
-                                                                        <i class="fa fa-info"></i>
+                                                                        <i class="fa fa-exclamation-triangle"></i>
                                                                     </button>
                                                                 </div>
                                                             </td>

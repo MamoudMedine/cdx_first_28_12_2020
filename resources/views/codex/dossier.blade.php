@@ -1,25 +1,21 @@
 <!doctype html>
-<html class="no-js" lang="en">
-
+<html  lang="fr">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Codex | Administration</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- favicon
-		============================================ -->
+    <!-- favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
-    <!-- Google Fonts
-		============================================ -->
+    <!-- Google Fonts -->
         @include('layouts.header')
-    
 </head>
 
 <body class="materialdesign">
     <div class="wrapper-pro">
         <div class="left-sidebar-pro" >
-            @include('layouts.codex_nav')
+            @include('layouts.codex_nav')// ADMIN SIDEBAR
         </div>
         <!-- Header top area start-->
         <div class="content-inner-all">
@@ -37,9 +33,11 @@
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-1 col-sm-1 col-xs-12"><!-- RECHERCHE-->
-                                <form style="margin-top: 15px;width: 800px;" action="" class="form form-inline">
-                                     <span style="font-weight: bold;font-size: 20px; color: white;">Agence : {{$get_nom_agence->nom}}</span>
-                                     <span style="font-weight: bold;font-size: 20px; color: white;"> 
+                                <form style="margin-top: 15px;width: 600px;" action="" class="form form-inline">
+                                     <span style="font-weight: bold;font-size: 20px;
+                                     color: white;">Agence : <b style="color: red;">{{$agence->nom}}</b>
+                                     </span>&nbsp;
+                                    <span style="font-weight: bold;font-size: 20px; color: white;">
                                         Mise à jour : 20-11-2020
                                      </span>
                                 </form>
@@ -49,34 +47,22 @@
                                     <ul class="nav navbar-nav mai-top-nav header-right-menu">
                                         <li class="nav-item">
                                             <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
-                                                <span class="adminpro-icon adminpro-user-rounded header-riht-inf"></span>
-                                                <span class="admin-name">Codex admin</span>
-                                                <span class="author-project-icon adminpro-icon adminpro-down-arrow"></span>
+                                                <span class="fa fa-user"></span>
+                                                <span class="admin-name">{{Auth::user()->nom_utilisateur}}</span>
+                                                <span class="fa fa-arrow-down"></span>
                                             </a>
                                             <ul role="menu" class="dropdown-header-top author-log dropdown-menu animated flipInX">
                                                 <li>
-                                                    <a href="{{route('edit_user_codex')}}"><span class="adminpro-icon adminpro-home-admin author-log-ic"></span>Changer le mot de passe</a>
+                                                    <a href="{{route('edit_user_admin')}}"><span class="fa fa-wrench"></span>Changer le mot de passe</a>
                                                 </li>
-                                                <li class="nav-item">
-                                                    <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
-                                                        <span class="adminpro-icon adminpro-user-rounded header-riht-inf"></span>
-                                                        <span class="admin-name">{{Auth::user()->nom_utilisateur}}</span>
-                                                        <span class="author-project-icon adminpro-icon adminpro-down-arrow"></span>
-                                                    </a>
-                                                    <ul role="menu" class="dropdown-header-top author-log dropdown-menu animated flipInX">
-                                                        <li>
-                                                            <a href="{{route('edit_user_codex')}}"><span class="adminpro-icon adminpro-home-admin author-log-ic"></span>Changer le mot de passe</a>
-                                                        </li>
-                                                        <li>
-                                                            <div class="p-2 border-t border-theme-40">
-                                                                <a class="adminpro-icon adminpro-locked author-log-ic" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> <i data-feather="toggle-right" class="w-4 h-4 mr-2"></i> Déconnexion </a>
-                                                            
-                                                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                                                    @csrf
-                                                                </form>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
+                                                <li>
+                                                    <div class="p-2 border-t border-theme-40">
+                                                        <a class="fa fa-sign-out" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> <i data-feather="toggle-right" class="w-4 h-4 mr-2"></i> Déconnexion </a>
+
+                                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                                            @csrf
+                                                        </form>
+                                                    </div>
                                                 </li>
                                             </ul>
                                         </li>
@@ -99,36 +85,36 @@
                                         <li class="nav-item">
                                             <a href="#" role="button" aria-expanded="false"
                                              class="nav-link">
-                                                <i class="fa big-icon fa-tachometer"></i> 
-                                                <span class="mini-dn">Tableau de bord</span> 
+                                                <i class="fa big-icon fa-tachometer"></i>
+                                                <span class="mini-dn">Tableau de bord</span>
                                             </a>
                                         </li>
                                         <li class="nav-item">
                                             <a href="#" role="button" aria-expanded="false" class="nav-link">
-                                                <i class="fa big-icon fa-info-circle"></i> 
-                                                <span class="mini-dn">Information</span> 
+                                                <i class="fa big-icon fa-info-circle"></i>
+                                                <span class="mini-dn">Information</span>
                                             </a>
                                         </li>
                                         <li class="nav-item">
-                                            <a href="#" role="button" aria-expanded="false" class="nav-link"><i class="fa big-icon fa-folder"></i> <span class="mini-dn">Dossiers</span> 
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="#" role="button" aria-expanded="false" class="nav-link">
-                                                <i class="fa big-icon fa-exclamation-circle"></i> 
-                                                <span class="mini-dn">Anomalies</span> 
+                                            <a href="#" role="button" aria-expanded="false" class="nav-link"><i class="fa big-icon fa-folder"></i> <span class="mini-dn">Dossiers</span>
                                             </a>
                                         </li>
                                         <li class="nav-item">
                                             <a href="#" role="button" aria-expanded="false" class="nav-link">
-                                                <i class="fa big-icon fa-users"></i> 
-                                                <span class="mini-dn">Utilisateurs</span> 
+                                                <i class="fa big-icon fa-exclamation-circle"></i>
+                                                <span class="mini-dn">Anomalies</span>
                                             </a>
                                         </li>
                                         <li class="nav-item">
                                             <a href="#" role="button" aria-expanded="false" class="nav-link">
-                                                <i class="fa big-icon fa-database"></i> 
-                                                <span class="mini-dn">Agences</span> 
+                                                <i class="fa big-icon fa-users"></i>
+                                                <span class="mini-dn">Utilisateurs</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#" role="button" aria-expanded="false" class="nav-link">
+                                                <i class="fa big-icon fa-database"></i>
+                                                <span class="mini-dn">Agences</span>
                                             </a>
                                         </li>
                                     </ul>
@@ -169,7 +155,6 @@
                 </div>
             </div>
             <!-- Breadcome End-->
-            <!-- CONTENU Start -->
             <div class="data-table-area mg-b-15">
                 <div class="container-fluid" style="margin-top: 25px;">
                     <div class="row">
@@ -195,25 +180,25 @@
                                                              <div class="col-md-2 col-sm-2 col-xs-2 text-right"  style="justify-content: right;">
                                                                 <input style="margin: 0!important;float: right;" type="checkbox" class="form-control">
                                                              </div>
-                                                             <div style="font-weight: bold; font-size: 18px;justify-content: left;"  
-                                                              class="col-md-10 text-justify" > 
+                                                             <div style="font-weight: bold; font-size: 18px;justify-content: left;"
+                                                              class="col-md-10 text-justify" >
                                                                Dossiers en impayés
-                                                            </div>                                              
+                                                            </div>
                                                         </div>
                                                         <div class="row">
                                                             <div class="col-md-2 col-sm-2 col-xs-2 text-right" style="justify-content: right;">
-                                                                <input type="checkbox" style="margin: 5!important;float: right;margin-bottom: 10px;" 
+                                                                <input type="checkbox" style="margin: 5!important;float: right;margin-bottom: 10px;"
                                                                 class="form-control">
                                                              </div>
-                                                             <div  style="font-weight: bold; font-size: 18px;padding-top: 5px;justify-content: left;" 
+                                                             <div  style="font-weight: bold; font-size: 18px;padding-top: 5px;justify-content: left;"
                                                              class="col-md-10 text-justify" >
                                                              Dossiers traités par la banque
-                                                            </div>    
+                                                            </div>
                                                         </div>
-                                                    
+
                                                 </div>
                                                 <div class="col-md-3 mg-b-10" style="align-content: flex-start;">
-                                                    <select class="form-control" name="" id="">
+                                                    <select class="selectpicker show-tick" name="" id="">
                                                         <option class="form-control" selected value="Aucun fitre">Aucun filtre</option>
                                                         <option class="form-control" value="active">Active</option>
                                                         <option class="form-control" value="close">Close</option>
@@ -228,46 +213,116 @@
                                            </form>
                                         </div>
                                     </div>
-                                    <div class="datatable-dashv1-list custom-datatable-overright">
-                                        <div id="toolbar">
-                                            <select class="form-control">
-                                                <option value="">Export Basic</option>
-                                                <option value="all">Export All</option>
-                                                <option value="selected">Export Selected</option>
-                                            </select>
-                                        </div>
-                                        <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true" data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
-                                            <thead>
-                                                <tr>
-                                                    <th data-field="state" data-checkbox="true"></th>
-                                                    <th data-field="name" data-editable="true">CODE DOSSIER</th>
-                                                    <th data-field="email" data-editable="true">QUANTITE D'ECHEANCE</th>
-                                                    <th data-field="phone" data-editable="true">IMPAYE</th>
-                                                    <th data-field="company" data-editable="true">CAITAL INITIAL</th>
-                                                    <th data-field="complete">NOM COMPLET DU CLIENT</th>
-                                                    <th data-field="task" data-editable="true">ADRESSE</th>
-                                                    <th data-field="date" data-editable="true">TELEPHONE</th>
-                                                    <th data-field="price" data-editable="true">GENRE DU CLIENT</th>
-                                                    <th data-field="action">Actions</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @foreach ($folders as $item)
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="table-responsive">
+                                                <table id="table_adm_dossier" class="table table-striped table-hover">
+                                                    <thead>
                                                     <tr>
-                                                        <td></td>
-                                                        <td>{{$item->code_dossier}}</td>
-                                                        <td>{{$item->code_dossier}}</td>
-                                                        <td>{{$item->code_dossier}}</td>
-                                                        <td>{{$item->capital}}.</td>
-                                                        <td>{{$item->nom_client}}</td>
-                                                        <td>{{$item->adressse}}</td>
-                                                        <td>{{$item->contact}}</td>
-                                                        <td>{{$item->sexe}}</td>
-                                                        <td></td>
+                                                        <th>DETAILS</th>
+                                                        <th>CODE DOSSIER</th>
+                                                        <th>QUANTITE D'ECHEANCE</th>
+                                                        <th>IMPAYE</th>
+                                                        <th>CAPITAL INITIAL</th>
+                                                        <th>NOM COMPLET DU CLIENT</th>
+                                                        <th>ADRESSE</th>
+                                                        <th>TELEPHONE</th>
+                                                        <th>GENRE DU CLIENT</th>
+                                                        <th>Actions</th>
                                                     </tr>
-                                                @endforeach
-                                            </tbody>
-                                        </table>
+                                                    </thead>
+                                                    <tbody>
+                                                      @csrf
+                                                      @foreach ($folders as $item)
+                                                        <tr>
+                                                            <input type="hidden" value="{{$item->code_client ?? ''}}">
+                                                            <input type="hidden" value="{{$item->nom_client ?? ''}}">
+                                                            <input type="hidden" value="{{$item->adresse ?? ''}}">
+                                                            <input type="hidden" value="{{$item->numero_piece ?? ''}}">
+                                                            <input type="hidden" value="{{$item->contact ?? ''}}">
+                                                            <input type="hidden" value="{{$item->situation?? ''}}">
+                                                            <input type="hidden" value="{{$item->date_naissance?? ''}}">
+                                                            <input type="hidden" value="{{$item->sexe?? ''}}">
+                                                            <input type="hidden" value="{{$item->code_agence?? ''}}">
+                                                            <input type="hidden" value="{{$item->pays_residence?? ''}}">
+                                                            <input type="hidden" value="{{$item->pays_nationalite?? ''}}">
+                                                            <input type="hidden" value="{{$item->nom_mere?? ''}}">
+
+                                                            <input type="hidden" value="{{$item->num_compte_client?? ''}}">
+                                                            <input type="hidden" value="{{$item->capital?? ''}}">
+                                                            <input type="hidden" value="{{$item->encours_credit?? ''}}">
+                                                            <input type="hidden" value="{{$item->capital_total_amorti?? ''}}">
+                                                            <input type="hidden" value="{{$item->capital_restant_amorti?? ''}}">
+                                                            <input type="hidden" value="{{$item->duree_pret?? ''}}">
+
+                                                            <input type="hidden" id="get_deblocages_url" cod_dos="{{$item->code_dossier}}" value="{{route('get_deblocages')}}">
+                                                            <td>
+                                                                <button cod_dos="{{$item->code_dossier}}" data-toggle="modal" data-target="#dos_detail_mdl"
+                                                                        class="btn btn-primary dos_detail_mdl" data-backdrop="false"
+                                                                        data-keyboard="static">
+                                                                    <i class="fa fa-eye"></i>
+                                                                </button>
+                                                            </td>
+                                                            <td>{{$item->code_dossier ?? ''}}</td>
+                                                            <td>{{$item->code_dossier ?? ''}}</td>
+                                                            <td>{{$item->code_dossier ?? ''}}</td>
+                                                            <td>{{$item->capital ?? ''}}.</td>
+                                                            <td>{{$item->nom_client ?? ''}}</td>
+                                                            <td>{{$item->adresse ?? ''}}</td>
+                                                            <td>{{$item->contact ?? ''}}</td>
+                                                            <td>{{$item->sexe ?? ''}}</td>
+                                                            <td>
+                                                                <div class="row align-center" style="margin-bottom: 1px;">
+                                                                    <button class="btn btn-danger dos_sms_mdl"
+                                                                             data-toggle="modal"
+                                                                             data-target="#dos_sms_mdl"
+                                                                             data-backdrop="false"
+                                                                             data-keyboard="static"
+                                                                    data-tooltip="tooltip"
+                                                                        data-original-title="SMS"
+                                                                        data-placement="top">
+                                                                        <i class="fa fa-comment-o"></i>
+                                                                    </button>&nbsp;
+                                                                    <button class="btn btn-danger dos_call_mdl"
+                                                                            data-toggle="modal"
+                                                                            data-target="#dos_call_mdl"
+                                                                            data-backdrop="false"
+                                                                            data-keyboard="static"
+                                                                         data-tooltip="tooltip"
+                                                                        data-original-title="SMS"
+                                                                        data-placement="top">
+                                                                        <i class="fa fa-phone"></i>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="row align-center">
+                                                                    <button class="btn btn-danger dos_visit_mdl"
+                                                                            data-toggle="modal"
+                                                                            data-target="#dos_visit_mdl"
+                                                                            data-backdrop="false"
+                                                                            data-keyboard="static"
+                                                                        data-tooltip="tooltip"
+                                                                        data-original-title="SMS"
+                                                                        data-placement="top">
+                                                                        <i class="fa fa-home"></i>
+                                                                    </button>&nbsp;
+                                                                    <button class="btn btn-danger dos_anomalie_mdl"
+                                                                            data-toggle="modal"
+                                                                            data-target="#dos_anomalie_mdl"
+                                                                            data-backdrop="false"
+                                                                            data-keyboard="static"
+                                                                        data-tooltip="tooltip"
+                                                                        data-original-title="SMS"
+                                                                        data-placement="top">
+                                                                        <i class="fa fa-exclamation-triangle"></i>
+                                                                    </button>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                       @endforeach
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -278,32 +333,36 @@
             <!-- CONTENU End -->
         </div>
     </div>
+    <input type="hidden" id="get_dossiers_url" value="{{route('get_dossiers_url')}}">
     <!-- Footer Start-->
     <div class="footer-copyright-area">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="footer-copy-right">
-                        <p>Copyright &#169; 2020 tout droit reservé. par <a href="https://colorlib.com">Carrement web</a>.</p>
+                        <p class="text-center">
+                            Copyright &#169; 2020 tout droit reservé. par
+                            <a href="https://colorlib.com">Carrement web</a>.
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <!-- Footer End-->
-    @include('layouts.header')
-  
+    @include('layouts.footer')
+    @include('codex.mdl_dossier.anomalie')
+    @include('codex.mdl_dossier.detail')
+    @include('codex.mdl_dossier.visit')
+    @include('codex.mdl_dossier.call')
+    @include('codex.mdl_dossier.sms')
+    <script src="{{asset('asset/js/codex/dossier.js')}}"></script>
+
     <style>
         #sidebar_menu >li>a:hover{
           background-color: #202845;
         }
     </style>
-    <script>
-        $(function(){
-        
-        });
-    </script>
-
 </body>
 
 </html>

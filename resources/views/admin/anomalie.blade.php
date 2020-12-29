@@ -83,6 +83,7 @@
     <div class="left-sidebar-pro" >
         @include('layouts.admin_nav')
     </div>
+    <input type="hidden" value="{{$code_agence}}" id="anomalie_code_agence">
     <!-- Header top area start-->
     <div class="content-inner-all">
         <div class="header-top-area">
@@ -123,7 +124,7 @@
                                         <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
                                             <span class="fa fa-user"></span>
                                             <span class="admin-name">{{Auth::user()->nom_utilisateur}}</span>
-                                            <span class="fa fa-arrow-down"></span>
+                                            <span class="fa fa-arrow-circle-down"></span>
                                         </a>
                                         <ul role="menu" class="dropdown-header-top author-log dropdown-menu animated flipInX">
                                             <li>
@@ -248,12 +249,13 @@
                                 <div class="row mg-b-15">
                                     <div class="col-md-10">
                                         <form action="">
+                                            @csrf
                                             <div class="row">
                                                 <div class="col-md-5">
                                                     <div class="row" style="margin-bottom: 12px;">
                                                         <div class="form-group">
                                                             <label style="float: left;margin-left: 20px;" class="checkbox-inline" >
-                                                                <input style="cursor: pointer;" name="dos_impaye" id="dos_impaye" type="checkbox">
+                                                                <input style="cursor: pointer;" name="chekbox_dos_impaye" id="chekbox_dos_impaye"  type="checkbox">
                                                                 <b>Dossier en impayés</b>
                                                             </label>
                                                         </div>
@@ -261,7 +263,7 @@
                                                     <div class="row">
                                                         <div class="form-group">
                                                             <label style="float: left;margin-left: 20px;" class="checkbox-inline" >
-                                                                <input style="cursor: pointer;" name="dos_par_banque" id="dos_par_banque" type="checkbox">
+                                                                <input style="cursor: pointer;" name="chekbox_dos_par_banque" id="chekbox_dos_par_banque" type="checkbox">
                                                                 <b>Dossiers traités par la banque</b>
                                                             </label>
                                                         </div>
@@ -275,9 +277,22 @@
                                                     </select>
                                                 </div>
                                                 <div class="col-md-2" style="justify-content: left;">
-                                                    <button class="btn btn-danger btn_filtre_par_type" style="float: left;">
+                                                    <button type="button" class="btn btn-danger btn_filtre_default" style="float: left;">
                                                         <i class="fa fa-filter"></i> Filtre
                                                     </button>
+                                                    <a href="{{route('anomalies_par_filtre', ['filtre_type'=>'dos_en_impaye', 'code_agence'=>$code_agence])}}"
+                                                       class="btn btn-danger btn_filtre_par_dos_impaye" style="float: left;display: none;">
+                                                        <i class="fa fa-filter"></i> Filtre
+                                                    </a>
+                                                    <a href="{{route('anomalies_par_filtre', ['filtre_type'=>'dos_par_banque', 'code_agence'=>$code_agence])}}" class="btn btn-danger btn_filtre_par_banque" style="float: left;display: none;">
+                                                        <i class="fa fa-filter"></i> Filtre
+                                                    </a>
+                                                    <a href="{{route('anomalies_par_filtre', ['filtre_type'=>'par_anomalie_active', 'code_agence'=>$code_agence])}}" class="btn btn-danger btn_filtre_par_anomalie_active" style="float: left;display: none;">
+                                                        <i class="fa fa-filter"></i> Filtre
+                                                    </a>
+                                                    <a href="{{route('anomalies_par_filtre', ['filtre_type'=>'par_anomalie_close', 'code_agence'=>$code_agence])}}" class="btn btn-danger btn_filtre_par_anomalie_close" style="float: left;display: none;">
+                                                        <i class="fa fa-filter"></i> Filtre
+                                                    </a>
                                                 </div>
                                             </div>
                                         </form>
@@ -303,6 +318,7 @@
                                                 </thead>
                                                 <tbody>
                                                 @csrf
+                                                <input type="hidden" class="anom_url_deblocages" value="{{route('get_deblocages')}}">
                                                 @foreach ($anomalies as $item)
                                                     <tr>
                                                         <input type="hidden" value="{{$item->code_client ?? ''}}">
@@ -337,8 +353,8 @@
                                                             </button>
                                                         </td>
                                                         <td>{{$item->code_dossier ?? ''}}</td>
-                                                        <td>{{count_echeances($item->code_dossier)}}</td>
-                                                        <td>{{check_impaye($item->code_dossier) == true ?'Oui':'Non'}}</td>
+                                                        <td>12</td>
+                                                        <td>Non</td>
                                                         <td>{{$item->capital ?? ''}}.</td>
                                                         <td>{{$item->nom_client ?? ''}}</td>
                                                         <td>{{$item->adresse ?? ''}}</td>

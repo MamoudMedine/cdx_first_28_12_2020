@@ -1,64 +1,64 @@
 $(function (){
      //alert('dossieer admin');
-     //get_anomalies();
+     //get_dossiers();
      // DOSSIERV PAR AGENCE
-     $(document).on('change', '#anom_nom_agence', function (){
+     $(document).on('change', '#dos_nom_agence', function (){
          //console.log($(this).val());
-         window.location.href = '/admin/anomalie/'+$(this).val();
+         window.location.href = '/admin/dossier/'+$(this).val();
      });
     // RECUPERATION DETAIL CLIENT CREDIT ET DEBLOCAGE
-     $(document).on('click', '.anom_detail_mdl', function (){
-           $('.adm_anom_det_cod_dos').val($(this).attr('cod_dos'));
-           $('.mdl_anom_det_cod_clt').text($(this).closest('tr').find('input:eq(0)').val());
-           $('.mdl_anom_det_nom_clt').text($(this).closest('tr').find('input:eq(1)').val());
-           $('.mdl_anom_det_adr_clt').text($(this).closest('tr').find('input:eq(2)').val());
-           $('.mdl_anom_det_cni_clt').text($(this).closest('tr').find('input:eq(3)').val());
-           $('.mdl_anom_det_tel_clt').text($(this).closest('tr').find('input:eq(4)').val());
-           $('.mdl_anom_det_sit_clt').text($(this).closest('tr').find('input:eq(5)').val());
-           $('.mdl_anom_det_naiss_clt').text($(this).closest('tr').find('input:eq(6)').val());
-           $('.mdl_anom_det_sex_clt').text($(this).closest('tr').find('input:eq(7)').val());
-           $('.mdl_anom_det_cag_clt').text($(this).closest('tr').find('input:eq(8)').val());
-           $('.mdl_anom_det_pres_clt').text($(this).closest('tr').find('input:eq(9)').val());
-           $('.mdl_anom_det_pnat_clt').text($(this).closest('tr').find('input:eq(10)').val());
-           $('.mdl_anom_det_mere_clt').text($(this).closest('tr').find('input:eq(11)').val());
+     $(document).on('click', '.dos_detail_mdl', function (){
+           $('.adm_dos_det_cod_dos').val($(this).attr('cod_dos'));
+           $('.mdl_dos_det_cod_clt').text($(this).closest('tr').find('input:eq(0)').val());
+           $('.mdl_dos_det_nom_clt').text($(this).closest('tr').find('input:eq(1)').val());
+           $('.mdl_dos_det_adr_clt').text($(this).closest('tr').find('input:eq(2)').val());
+           $('.mdl_dos_det_cni_clt').text($(this).closest('tr').find('input:eq(3)').val());
+           $('.mdl_dos_det_tel_clt').text($(this).closest('tr').find('input:eq(4)').val());
+           $('.mdl_dos_det_sit_clt').text($(this).closest('tr').find('input:eq(5)').val());
+           $('.mdl_dos_det_naiss_clt').text($(this).closest('tr').find('input:eq(6)').val());
+           $('.mdl_dos_det_sex_clt').text($(this).closest('tr').find('input:eq(7)').val());
+           $('.mdl_dos_det_cag_clt').text($(this).closest('tr').find('input:eq(8)').val());
+           $('.mdl_dos_det_pres_clt').text($(this).closest('tr').find('input:eq(9)').val());
+           $('.mdl_dos_det_pnat_clt').text($(this).closest('tr').find('input:eq(10)').val());
+           $('.mdl_dos_det_mere_clt').text($(this).closest('tr').find('input:eq(11)').val());
 
-           $('.mdl_anom_det_numcpt_clt').text($(this).closest('tr').find('input:eq(12)').val());
-           $('.mdl_anom_det_cap_init').text($(this).closest('tr').find('input:eq(13)').val());
-           $('.mdl_anom_det_enc_crd').text($(this).closest('tr').find('input:eq(14)').val());
-           $('.mdl_anom_det_cap_tot_am').text($(this).closest('tr').find('input:eq(15)').val());
-           $('.mdl_anom_det_cap_res_am').text($(this).closest('tr').find('input:eq(16)').val());
-           $('.mdl_anom_det_du_prt').text($(this).closest('tr').find('input:eq(17)').val());
+           $('.mdl_dos_det_numcpt_clt').text($(this).closest('tr').find('input:eq(12)').val());
+           $('.mdl_dos_det_cap_init').text($(this).closest('tr').find('input:eq(13)').val());
+           $('.mdl_dos_det_enc_crd').text($(this).closest('tr').find('input:eq(14)').val());
+           $('.mdl_dos_det_cap_tot_am').text($(this).closest('tr').find('input:eq(15)').val());
+           $('.mdl_dos_det_cap_res_am').text($(this).closest('tr').find('input:eq(16)').val());
+           $('.mdl_dos_det_du_prt').text($(this).closest('tr').find('input:eq(17)').val());
            get_deblocages(this);
      });
      // MODAL SENS SMS
-     $(document).on('click', '.anom_sms_mdl', function (){
-           $('.mdl_anom_sms_cod_dos').text($(this).closest('tr').find('td:eq(0)').find('button').attr('cod_dos'));
-           $('.mdl_anom_sms_nom_clt').text($(this).closest('tr').find('input:eq(1)').val());
-           $('.mdl_anom_sms_adr_clt').text($(this).closest('tr').find('input:eq(2)').val());
-           $('.mdl_anom_sms_tel_clt').text($(this).closest('tr').find('input:eq(4)').val());
-           $('.mdl_anom_sms_genre_clt').text($(this).closest('tr').find('input:eq(7)').val());
-          $('.mdl_anom_sms_input_tel_clt').val($(this).closest('tr').find('input:eq(4)').val());
+     $(document).on('click', '.dos_sms_mdl', function (){
+           $('.mdl_dos_sms_cod_dos').text($(this).closest('tr').find('td:eq(0)').find('button').attr('cod_dos'));
+           $('.mdl_dos_sms_nom_clt').text($(this).closest('tr').find('input:eq(1)').val());
+           $('.mdl_dos_sms_adr_clt').text($(this).closest('tr').find('input:eq(2)').val());
+           $('.mdl_dos_sms_tel_clt').text($(this).closest('tr').find('input:eq(4)').val());
+           $('.mdl_dos_sms_genre_clt').text($(this).closest('tr').find('input:eq(7)').val());
+          $('.mdl_dos_sms_input_tel_clt').val($(this).closest('tr').find('input:eq(4)').val());
      });
     // MODAL CALL
-    $(document).on('click', '.anom_call_mdl', function (){
-        $('.mdl_anom_call_cod_dos').text($(this).closest('tr').find('td:eq(0)').find('button').attr('cod_dos'));
-        $('.mdl_anom_call_nom_clt').text($(this).closest('tr').find('input:eq(1)').val());
-        $('.mdl_anom_call_adr_clt').text($(this).closest('tr').find('input:eq(2)').val());
-        $('.mdl_anom_call_tel_clt').text($(this).closest('tr').find('input:eq(4)').val());
-        $('.mdl_anom_call_genre_clt').text($(this).closest('tr').find('input:eq(7)').val());
+    $(document).on('click', '.dos_call_mdl', function (){
+        $('.mdl_dos_call_cod_dos').text($(this).closest('tr').find('td:eq(0)').find('button').attr('cod_dos'));
+        $('.mdl_dos_call_nom_clt').text($(this).closest('tr').find('input:eq(1)').val());
+        $('.mdl_dos_call_adr_clt').text($(this).closest('tr').find('input:eq(2)').val());
+        $('.mdl_dos_call_tel_clt').text($(this).closest('tr').find('input:eq(4)').val());
+        $('.mdl_dos_call_genre_clt').text($(this).closest('tr').find('input:eq(7)').val());
     });
     // MODAL VISITE
-    $(document).on('click', '.anom_visit_mdl', function (){
-        $('.mdl_anom_call_cod_dos').text($(this).closest('tr').find('td:eq(0)').find('button').attr('cod_dos'));
-        $('.mdl_anom_call_nom_clt').text($(this).closest('tr').find('input:eq(1)').val());
-        $('.mdl_anom_call_adr_clt').text($(this).closest('tr').find('input:eq(2)').val());
-        $('.mdl_anom_call_tel_clt').text($(this).closest('tr').find('input:eq(4)').val());
-        $('.mdl_anom_call_genre_clt').text($(this).closest('tr').find('input:eq(7)').val());
+    $(document).on('click', '.dos_visit_mdl', function (){
+        $('.mdl_dos_call_cod_dos').text($(this).closest('tr').find('td:eq(0)').find('button').attr('cod_dos'));
+        $('.mdl_dos_call_nom_clt').text($(this).closest('tr').find('input:eq(1)').val());
+        $('.mdl_dos_call_adr_clt').text($(this).closest('tr').find('input:eq(2)').val());
+        $('.mdl_dos_call_tel_clt').text($(this).closest('tr').find('input:eq(4)').val());
+        $('.mdl_dos_call_genre_clt').text($(this).closest('tr').find('input:eq(7)').val());
     });
     // RECUPERATION DETAIL ECHEANCE
-     $(document).on('click', '.adm_anom_ech_tab', function (){
+     $(document).on('click', '.adm_dos_ech_tab', function (){
          var url_get_echeance = $(".get_echeance_url").val();
-         var code_dos = $('.adm_anom_det_cod_dos').val();
+         var code_dos = $('.adm_dos_det_cod_dos').val();
          var token = $('input[name=_token]').val();
          $.ajax({
              url: url_get_echeance,
@@ -66,7 +66,7 @@ $(function (){
              data: {_token: token, code_dos: code_dos},
              success: function (resp){
                  //console.log(resp.dossiers);
-                 $("#adm_anom_det_tbl_echeance").find('tbody').find('tr').remove();
+                 $("#adm_dos_det_tbl_echeance").find('tbody').find('tr').remove();
                  //console.log(resp.echeances);
                  $.each(resp.echeances, function (i, ech){
                      var tr = '<tr>';
@@ -78,7 +78,7 @@ $(function (){
                      tr += '<td>'+ ech.numero_echeance +'</td>';
                      tr += '<td>'+ ech.date_reglement +'</td>';
                      tr += '</tr>';
-                     $("#adm_anom_det_tbl_echeance").find('tbody').append(tr);
+                     $("#adm_dos_det_tbl_echeance").find('tbody').append(tr);
                  });
              },
              error: function (){
@@ -87,9 +87,9 @@ $(function (){
          });
      });
      // GARANTIES
-     $(document).on('click', '.adm_anom_gar_tab', function (){
+     $(document).on('click', '.adm_dos_gar_tab', function (){
         var url_get_garantie = $(".get_garantie_url").val();
-        var code_dos = $('.adm_anom_det_cod_dos').val();
+        var code_dos = $('.adm_dos_det_cod_dos').val();
         var token = $('input[name=_token]').val();
         $.ajax({
             url: url_get_garantie,
@@ -97,14 +97,14 @@ $(function (){
             data: {_token: token, code_dos: code_dos},
             success: function (resp){
                 //console.log(resp.dossiers);
-                $("#adm_anom_det_tbl_garantie").find('tbody').find('tr').remove();
+                $("#adm_dos_det_tbl_garantie").find('tbody').find('tr').remove();
                 //console.log(resp.echeances);
                 $.each(resp.garanties, function (i, gar){
                     var tr = '<tr>';
                     tr += '<td>'+ gar.libelle +'</td>';
                     tr += '<td>'+ gar.montant +'</td>';
                     tr += '</tr>';
-                    $("#adm_anom_det_tbl_garantie").find('tbody').append(tr);
+                    $("#adm_dos_det_tbl_garantie").find('tbody').append(tr);
                 });
             },
             error: function (){
@@ -113,9 +113,9 @@ $(function (){
         });
     });
     // IMPAYES
-    $(document).on('click', '.adm_anom_imp_tab', function (){
+    $(document).on('click', '.adm_dos_imp_tab', function (){
         var url_get_impaye = $(".get_impaye_url").val();
-        var code_dos = $('.adm_anom_det_cod_dos').val();
+        var code_dos = $('.adm_dos_det_cod_dos').val();
         var token = $('input[name=_token]').val();
         $.ajax({
             url: url_get_impaye,
@@ -123,7 +123,7 @@ $(function (){
             data: {_token: token, code_dos: code_dos},
             success: function (resp){
                 //console.log(resp.dossiers);
-                $("#adm_anom_det_tbl_impaye").find('tbody').find('tr').remove();
+                $("#adm_dos_det_tbl_impaye").find('tbody').find('tr').remove();
                 //console.log(resp.echeances);
                 $.each(resp.impayes, function (i, imp){
                     var tr = '<tr>';
@@ -137,7 +137,7 @@ $(function (){
                     tr += '<td>'+ imp.montant_total_interet_retard +'</td>';
                     tr += '<td>'+ imp.date_dernier_remboursement +'</td>';
                     tr += '</tr>';
-                    $("#adm_anom_det_tbl_impaye").find('tbody').append(tr);
+                    $("#adm_dos_det_tbl_impaye").find('tbody').append(tr);
                 });
             },
             error: function (){
@@ -146,9 +146,9 @@ $(function (){
         });
     });
     // ACTIONS
-    $(document).on('click', '.adm_anom_act_tab', function (){
+    $(document).on('click', '.adm_dos_act_tab', function (){
         var url_get_action = $(".get_action_url").val();
-        var code_dos = $('.adm_anom_det_cod_dos').val();
+        var code_dos = $('.adm_dos_det_cod_dos').val();
         var token = $('input[name=_token]').val();
         $.ajax({
             url: url_get_action,
@@ -156,7 +156,7 @@ $(function (){
             data: {_token: token, code_dos: code_dos},
             success: function (resp){
                 //console.log(resp.dossiers);
-                $("#adm_anom_det_tbl_actions").find('tbody').find('tr').remove();
+                $("#adm_dos_det_tbl_actions").find('tbody').find('tr').remove();
                 //console.log(resp.echeances);
                 $.each(resp.actions, function (i, act){
                     var tr = '<tr>';
@@ -164,7 +164,7 @@ $(function (){
                     tr += '<td>'+ act.created_at.substr(0, 10) +'</td>';
                     tr += '<td>'+ act.commentaire +'</td>';
                     tr += '</tr>';
-                    $("#adm_anom_det_tbl_actions").find('tbody').append(tr);
+                    $("#adm_dos_det_tbl_actions").find('tbody').append(tr);
                 });
             },
             error: function (){
@@ -173,9 +173,9 @@ $(function (){
         });
     });
     // ANOMALIES
-    $(document).on('click', '.adm_anom_an_tab', function (){
+    $(document).on('click', '.adm_dos_an_tab', function (){
         var url_get_anomalie = $(".get_anomalie_url").val();
-        var code_dos = $('.adm_anom_det_cod_dos').val();
+        var code_dos = $('.adm_dos_det_cod_dos').val();
         var token = $('input[name=_token]').val();
         $.ajax({
             url: url_get_anomalie,
@@ -183,7 +183,7 @@ $(function (){
             data: {_token: token, code_dos: code_dos},
             success: function (resp){
                 //console.log(resp.dossiers);
-                $("#adm_anom_det_tbl_anomalies").find('tbody').find('tr').remove();
+                $("#adm_dos_det_tbl_anomalies").find('tbody').find('tr').remove();
                 //console.log(resp.echeances);
                 $.each(resp.anomalies, function (i, anom){
                     var tr = '<tr>';
@@ -192,7 +192,7 @@ $(function (){
                     tr += '<td>'+ anom.created_at.substr(0, 10) +'</td>';
                     tr += '<td>'+ anom.statut +'</td>';
                     tr += '</tr>';
-                    $("#adm_anom_det_tbl_anomalies").find('tbody').append(tr);
+                    $("#adm_dos_det_tbl_anomalies").find('tbody').append(tr);
                 });
             },
             error: function (){
@@ -200,11 +200,11 @@ $(function (){
             }
         });
     });
-     function get_anomalies(){
-         var url_get_anomalies = $("#get_anomalies_url").val();
+     function get_dossiers(){
+         var url_get_dossiers = $("#get_dossiers_url").val();
          setTimeout(function (){
              $.ajax({
-                 url: url_get_anomalies,
+                 url: url_get_dossiers,
                  method: 'GET',
                  success: function (resp){
                      //console.log(resp.dossiers);
@@ -234,7 +234,7 @@ $(function (){
                 data: {_token: token, code_dos: code_dos},
                 success: function (resp){
                     //console.log(resp.dossiers);
-                    $("#adm_anom_det_tbl_deblocage").find('tbody').find('tr').remove();
+                    $("#adm_dos_det_tbl_deblocage").find('tbody').find('tr').remove();
                     console.log(resp.deblocage);
                     $.each(resp.deblocage, function (i, deb){
                         var tr = '<tr>';
@@ -244,7 +244,7 @@ $(function (){
                             tr += '<td>'+ deb.duree_echeance +'</td>';
                             tr += '<td>'+ deb.montant_net_echeance +'</td>';
                             tr += '</tr>';
-                        $("#adm_anom_det_tbl_deblocage").find('tbody').append(tr);
+                        $("#adm_dos_det_tbl_deblocage").find('tbody').append(tr);
                     });
                 },
                 error: function (){
@@ -272,39 +272,4 @@ $(function (){
             tr += '</tr>';
        return tr;
      }// GENNERE TABLE DOSSIERS
-    // ANOMALIE FILTRE
-    $(document).on('change', '#chekbox_dos_impaye', function (){
-        if($(this).is(':checked')) {
-            $('.btn_filtre_par_dos_impaye').show();
-            $('.btn_filtre_par_banque').hide();
-            $('.btn_filtre_par_anomalie_active').hide();
-            $('.btn_filtre_par_anomalie_close').hide();
-            $('.btn_filtre_default').hide();
-        }
-    });
-    $(document).on('change', '#chekbox_dos_par_banque', function (){
-         if($(this).is(':checked')){
-             $('.btn_filtre_par_dos_impaye').hide();
-             $('.btn_filtre_par_banque').show();
-             $('.btn_filtre_par_anomalie_active').hide();
-             $('.btn_filtre_par_anomalie_close').hide();
-             $('.btn_filtre_default').hide();
-         }
-    });
-    $(document).on('change', '#select_type_credit', function (){
-        if($(this).val() === 'active') {
-            $('.btn_filtre_par_dos_impaye').hide();
-            $('.btn_filtre_par_banque').hide();
-            $('.btn_filtre_par_anomalie_active').show();
-            $('.btn_filtre_par_anomalie_close').hide();
-            $('.btn_filtre_default').hide();
-        }
-        if($(this).val() === 'close') {
-            $('.btn_filtre_par_dos_impaye').hide();
-            $('.btn_filtre_par_banque').hide();
-            $('.btn_filtre_par_anomalie_active').hide();
-            $('.btn_filtre_par_anomalie_close').show();
-            $('.btn_filtre_default').hide();
-        }
-    });
 });

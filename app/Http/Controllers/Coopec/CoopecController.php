@@ -84,27 +84,14 @@ class CoopecController extends Controller
 
     public function anomalie()
     {
-        $folders = Client::join('agences', 'clients.code_agence', 'agences.code_agence')
-                    ->join('credits', 'clients.code_client', 'credits.code_client')
-                    ->join('echeances', 'credits.code_dossier', 'echeances.code_dossier')
-                    ->join('impayes', 'credits.code_dossier', 'impayes.code_dossier')
-                    ->join('anomalies', 'credits.code_dossier', 'anomalies.code_dossier')
-                    ->get();
-
-        // $files = Client::join('actions', 'clients.code_client', 'actions.code_client')
-        //                 ->join('agences', 'clients.code_agence', 'agences.code_agence')
-        //                 ->join('credits', 'clients.code_client', 'credits.code_client')
-        //                 ->join('credits', 'agences.code_agence', 'credits.code_agence')
-        //                 ->join('garanties', 'clients.code_client', 'garanties.code_client')
-        //                 ->join('deblocages', 'echeances.code_echeance', 'deblocages.code_echeance')
-        //                 ->join('anomalies', 'clients.code_client', 'anomalies.code_client')
-        //                 ->join('impayes', 'agences.code_agence', 'impayes.code_agence');
-
-        $get_nom_agence = User::join('agences', 'users.agence_id', 'agences.id')
+        $folders = //dd(Cache::get('get_anomalies'));
+        $get_agence = Agence::orderBy('nom', 'ASC')->get();
+        $agence = User::join('agences', 'users.agence_id', 'agences.id')
                             ->where('users.id', Auth::user()->id)
                             ->first();
-
-        return view('coopec.anomalie', compact('folders', 'get_nom_agence'));
+        $anomalies = Client::join('credits', 'clients.code_client', 'credits.code_client')
+            ->where('clients.code_agence', $agence->code_agence)->get();
+        return view('coopec.anomalie', compact('anomalies', 'get_nom_agence'));
     }
 
     public function edit()
