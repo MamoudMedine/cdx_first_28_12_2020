@@ -32,10 +32,29 @@ class AdminController extends Controller
 
     public function index()
     {
+        $global_recouvrer = Credit::where('capital_restant_amorti', '0')
+                                        ->orWhere('capital_restant_amorti', '0.00')->count();
+
+        $global_non_recouvrer = Credit::where('capital_restant_amorti','>', '0')->count();
+
+        /*$ag_recouvrer = Credit::join('clients', 'credits.code_client', 'clients.code_client')
+                                         ->join('agences', 'agences.code_agence', 'credits.code_agence')
+                                         ->where('capital_restant_amorti', '0')
+                                         ->orWhere('capital_restant_amorti', '0.00')->count();
+
+        $ag_non_recouvrer = Credit::join('clients', 'credits.code_client', 'clients.code_client')
+            ->join('agences', 'agences.code_agence', 'credits.code_agence')
+            ->where('capital_restant_amorti','>', '0')->count();*/
+
+        //dd($recouvrer_par_ag);
+        //dd($global_recouvrement);
 
         $get_agence = Agence::orderBy('nom', 'ASC')->get();
 
-        return view('admin.index', compact('get_agence'));
+//        return view('admin.index', compact('get_agence',
+//            'global_recouvrer', 'global_non_recouvrer', 'ag_recouvrer', 'ag_non_recouvrer'));
+        return view('admin.index', compact('get_agence',
+            'global_recouvrer', 'global_non_recouvrer'));
     }
 
     public function information()
@@ -121,10 +140,7 @@ class AdminController extends Controller
     // DOSSIERS
     public function dossier($code_agence = '00001')
     {
-//       $folders = Client::join('credits', 'clients.code_client', 'credits.code_client')
-//                         ->where('clients.code_agence', $code_agence)->orderBy('code_dossier', 'ASC')->get();
-//        $get_agence = Agence::orderBy('nom', 'ASC')->get();
-//        return view('admin.dossier', compact( 'get_agence', 'folders', 'code_agence'));
+
         $get_agence = Agence::orderBy('nom', 'ASC')->get();
         if(Cache::has('get_dossiers')){
             $folders = Cache::get('get_dossiers');

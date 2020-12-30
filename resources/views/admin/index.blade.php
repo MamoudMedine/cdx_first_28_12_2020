@@ -13,80 +13,6 @@
     <!-- Google Fonts
 		============================================ -->
     @include('layouts.header')
-    <script type="text/javascript">
-        function charts(chart,labs, type, data, bg_color){
-            new Chart(chart, {
-                type: type,
-                data: {
-                    labels: labs,
-                    datasets: [{
-                        data: data,
-                        backgroundColor: bg_color,
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: true,
-                    plugins: {
-                        labels: {
-                            render: 'percentage',
-                            fontColor: ['white', 'white'],
-                            precision: 2
-                        }
-                    },
-                }
-            });
-        }
-        window.onload = function() {
-            var pie_chart = document.getElementById('pieChart');
-            var data = [33655, 50445];
-            var labels = ['Total en cours','Total recouvré'];
-            var bg_color = ['#FF6384','#36A2EB'];
-            charts(pie_chart,labels, 'pie', data, bg_color);
-
-            var pie_chart2 = document.getElementById('pieChart2');
-            var data2 = [33655, 50445];
-            var labels2 = ['Total en cours','Total recouvré'];
-            var bg_color2 = ['#FF6384','#36A2EB'];
-            charts(pie_chart2,labels2, 'pie', data2, bg_color2);
-
-            var pie_chart3 = document.getElementById('pieChart3');
-            var data3 = [33655, 10445 ,50445];
-            var labels3 = ['Total en cours','autres','Total recouvré'];
-            var bg_color3 = ['#FF6384', '#5F6384','#36A2EB'];
-            charts(pie_chart3,labels3, 'pie', data3, bg_color3);
-
-            var pie_chart4 = document.getElementById('pieChart4');
-            var data4 = [33655,15000, 40445];
-            var labels4 = ['Total en cours','autres','Total recouvré'];
-            var bg_color4 = ['#FF6384', '#4F5244','#36A2EB'];
-            charts(pie_chart4,labels4, 'pie', data4, bg_color4);
-
-            var bar_chart = document.getElementById('barChart');
-            var bar_data = [40655, 49445];
-            var bar_labels = ['SMS','Appels'];
-            var bar_bg_color = ['#FF6384', '#4F5244'];
-            charts(bar_chart,bar_labels, 'bar', bar_data, bar_bg_color);
-
-            var bar_chart1 = document.getElementById('barChart1');
-            var bar_data1 = [40655, 48445];
-            var bar_labels1 = ['SMS','Appels'];
-            var bar_bg_color1 = ['#FF6384', '#4F5244'];
-            charts(bar_chart1,bar_labels1, 'bar', bar_data1, bar_bg_color1);
-
-            var bar_chart2 = document.getElementById('barChart2');
-            var bar_data2 = [40655, 48445];
-            var bar_labels2 = ['Montant impayés','Montant récouvrés'];
-            var bar_bg_color2 = ['#FF6384', '#4F5244'];
-            charts(bar_chart2,bar_labels2, 'bar', bar_data2, bar_bg_color2);
-
-            var bar_chart3 = document.getElementById('barChart3');
-            var bar_data3 = [40655, 48445];
-            var bar_labels3 = ['Montant impayés','Montant récouvrés'];
-            var bar_bg_color3 = ['#FF6384', '#4F5244'];
-            charts(bar_chart3,bar_labels3, 'bar', bar_data3, bar_bg_color3);
-        }
-    </script>
 </head>
 
 <body class="materialdesign">
@@ -221,7 +147,8 @@
                                             Total du Recouvrement Global
                                         </div>
                                         <div class="panel-body">
-                                            <canvas id="pieChart" width="400" height="300"></canvas>
+                                            <canvas glb_rec="{{$global_recouvrer}}" glb_non_rec="{{$global_non_recouvrer}}"
+                                                    id="pieChart" width="400" height="300"></canvas>
                                         </div>
                                     </div>
                                 </div>
@@ -230,6 +157,8 @@
                                     <div class="panel panel-default">
                                         <div style="background-color: white;" class="panel-heading">Total du Recouvrement Agence</div>
                                         <div class="panel-body">
+{{--                                            <canvas ag_rec="{{$ag_recouvrer}}" ag_non_rec="{{$ag_non_recouvrer}}"--}}
+{{--                                                    id="pieChart2" width="400" height="300"></canvas>--}}
                                             <canvas id="pieChart2" width="400" height="300"></canvas>
                                         </div>
                                     </div>
@@ -265,7 +194,7 @@
                                     <div class="panel panel-default">
                                         <div style="background-color: white;" class="panel-heading">Actions globales</div>
                                         <div class="panel-body">
-                                            <canvas id="barChart" width="400" height="300"></canvas>
+                                            <canvas  id="barChart" width="400" height="300"></canvas>
                                         </div>
                                     </div>
                                 </div>
@@ -326,9 +255,88 @@
     @include('layouts.footer')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/emn178/chartjs-plugin-labels/src/chartjs-plugin-labels.js"></script>
+    <script>
+        $(function () {
+            function charts(chart,labs, type, data, bg_color){
+                new Chart(chart, {
+                    type: type,
+                    data: {
+                        labels: labs,
+                        datasets: [{
+                            data: data,
+                            backgroundColor: bg_color,
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: true,
+                        plugins: {
+                            labels: {
+                                render: 'percentage',
+                                fontColor: ['white', 'white'],
+                                precision: 2
+                            }
+                        },
+                    }
+                });
+            }
+            var pie_chart = $('#pieChart');
+            var glb_rec = $('#pieChart').attr('glb_rec');
+            var glb_non_rec = $('#pieChart').attr('glb_non_rec');
+            //console.log(glb_rec);
+            var data = [glb_non_rec, glb_rec];
+            var labels = ['Total en cours','Total recouvré'];
+            var bg_color = ['#FF6384','#36A2EB'];
+            charts(pie_chart,labels, 'pie', data, bg_color);
+
+            var pie_chart2 = $('#pieChart2');
+            var ag_rec = $('#pieChart2').attr('ag_rec');
+            var ag_non_rec = $('#pieChart2').attr('ag_non_rec');
+            var data2 = [ag_non_rec, ag_rec];
+            var labels2 = ['Total en cours','Total recouvré'];
+            var bg_color2 = ['#FF6384','#36A2EB'];
+            charts(pie_chart2,labels2, 'pie', data2, bg_color2);
+
+            var pie_chart3 = $('#pieChart3');
+            var data3 = [33655, 10445 ,50445];
+            var labels3 = ['Total en cours','autres','Total recouvré'];
+            var bg_color3 = ['#FF6384', '#5F6384','#36A2EB'];
+            charts(pie_chart3,labels3, 'pie', data3, bg_color3);
+
+            var pie_chart4 = $('#pieChart4');
+            var data4 = [33655,15000, 40445];
+            var labels4 = ['Total en cours','autres','Total recouvré'];
+            var bg_color4 = ['#FF6384', '#4F5244','#36A2EB'];
+            charts(pie_chart4,labels4, 'pie', data4, bg_color4);
+
+            var bar_chart = $('#barChart');
+            var bar_data = [40655, 49445];
+            var bar_labels = ['SMS','Appels'];
+            var bar_bg_color = ['#FF6384', '#4F5244'];
+            charts(bar_chart,bar_labels, 'bar', bar_data, bar_bg_color);
+
+            var bar_chart1 = $('#barChart1');
+            var bar_data1 = [40655, 48445];
+            var bar_labels1 = ['SMS','Appels'];
+            var bar_bg_color1 = ['#FF6384', '#4F5244'];
+            charts(bar_chart1,bar_labels1, 'bar', bar_data1, bar_bg_color1);
+
+            var bar_chart2 = $('#barChart2');
+            var bar_data2 = [40655, 48445];
+            var bar_labels2 = ['Montant impayés','Montant récouvrés'];
+            var bar_bg_color2 = ['#FF6384', '#4F5244'];
+            charts(bar_chart2,bar_labels2, 'bar', bar_data2, bar_bg_color2);
+
+            var bar_chart3 = $('#barChart3');
+            var bar_data3 = [40655, 48445];
+            var bar_labels3 = ['Montant impayés','Montant récouvrés'];
+            var bar_bg_color3 = ['#FF6384', '#4F5244'];
+            charts(bar_chart3,bar_labels3, 'bar', bar_data3, bar_bg_color3);
+        });
+    </script>
     <style>
         #sidebar_menu >li>a:hover{
-          background-color: #202845;
+            background-color: #202845;
         }
         .panel-heading {
             background-color: white;
@@ -336,11 +344,6 @@
             font-weight: bold;
         }
     </style>
-
-<script>
-
-</script>
-
 </body>
 
 </html>
